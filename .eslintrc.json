@@ -1,0 +1,99 @@
+{
+  "extends": "next/core-web-vitals",
+  "root": true,
+  "ignorePatterns": [".next/*", "node_modules/*"],
+  "plugins": ["jest", "react", "unused-imports", "@typescript-eslint"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:prettier/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "prettier"
+      ],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "error",
+        "no-console": [
+          "warn",
+          {
+            "allow": ["warn", "error"]
+          }
+        ],
+        "react-hooks/exhaustive-deps": "warn",
+        "@typescript-eslint/no-empty-function": "warn",
+        "jsx-a11y/accessible-emoji": "off",
+        "no-unused-vars": "off",
+        "curly": "error",
+        "no-nested-ternary": "error",
+        "no-unneeded-ternary": "error",
+        "no-else-return": [
+          "error",
+          {
+            "allowElseIf": false
+          }
+        ],
+        "@typescript-eslint/no-unused-vars": "off",
+        "unused-imports/no-unused-imports": "error",
+        "react/function-component-definition": [
+          "warn",
+          {
+            "namedComponents": "arrow-function",
+            "unnamedComponents": "arrow-function"
+          }
+        ],
+        "unused-imports/no-unused-vars": [
+          "warn",
+          {
+            "vars": "all",
+            "varsIgnorePattern": "^_",
+            "args": "after-used",
+            "argsIgnorePattern": "^_"
+          }
+        ],
+        "react/no-array-index-key": "warn",
+        "no-fallthrough": "off",
+        "react/prop-types": "off",
+        "react/display-name": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/self-closing-comp": [
+          "error",
+          {
+            "component": true,
+            "html": true
+          }
+        ],
+        // @TODO: Not sure why we have to disable this.
+        "react/no-unknown-property": ["off"]
+      }
+    },
+    {
+      "files": ["*.spec.ts", "*.spec.tsx"],
+      "extends": ["eslint:recommended", "plugin:jest/recommended", "prettier"],
+      "rules": {
+        "jest/prefer-strict-equal": "warn"
+      }
+    },
+    {
+      "files": ["serverless.ts", "*.serverless.ts", "serverless.base.ts"],
+      "rules": {
+        // We don't want this to fail serverless files with ${opt:stage}.
+        "no-template-curly-in-string": "off"
+      }
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["eslint:recommended", "prettier"],
+      "rules": {}
+    },
+    {
+      "files": ["*.graphql"],
+      "parser": "@graphql-eslint/eslint-plugin",
+      "plugins": ["@graphql-eslint"],
+      "rules": {
+        "@graphql-eslint/known-type-names": "error"
+      }
+    }
+  ]
+}

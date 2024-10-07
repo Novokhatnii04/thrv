@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Avenir';
+  src: url('../assets/fonts/Avenir.ttc') format('ttc');
+}
+
+body .react-datepicker__year-dropdown {
+  background-color: #e6e5e5;
+}
+
+/* tailwind.config.css or a global CSS file */
+.truncate-2-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+.react-datepicker__navigation--years::before {
+  border-color: #666;
+  border-style: solid;
+  border-width: 3px 3px 0 0;
+  content: '';
+  display: block;
+  height: 9px;
+  left: 11px;
+  position: absolute;
+  width: 9px;
+}
+
+body .react-datepicker__year-dropdown {
+  width: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.react-datepicker__navigation--years-upcoming::before {
+  top: 17px;
+  transform: rotate(315deg);
+}
+
+.react-datepicker__navigation--years-previous::before {
+  top: 6px;
+  transform: rotate(135deg);
+}
+
+.PhoneInputInput {
+  padding-top: 1rem /* 16px */;
+  padding-bottom: 1rem /* 16px */;
+  padding-left: 1.5rem /* 24px */;
+  padding-right: 1.5rem /* 24px */;
+  border-radius: 1rem /* 16px */;
+  background-color: #00000000;
+  border: 1px solid #a4a4a5;
+  font-size: 0.875rem /* 14px */;
+  line-height: 1.25rem /* 20px */;
+}
