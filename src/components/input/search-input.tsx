@@ -7,7 +7,7 @@ export const SearchInput: React.FC<{
   onChange?: (value: string) => void;
   initial?: string;
   cStyles?: string;
-}> = ({ onChange, initial = '', cStyles = ''}) => {
+}> = ({ onChange, initial = '', cStyles = '' }) => {
   const [search, setSearch] = useState(initial);
 
   useEffect(() => {

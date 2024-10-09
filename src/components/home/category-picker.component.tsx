@@ -56,21 +56,28 @@ export const CategoryPicker = ({
   return (
     <div className="flex">
       <Swiper
-        className='dp:w-[100%] py-[1px] pr-[1px]'
+        className="dp:w-[100%] py-[1px] pr-[1px]"
         modules={[Virtual]}
+        breakpoints={{
+          320: {
+            spaceBetween: 12,
+          },
+          1440: {
+            spaceBetween: 24,
+          },
+        }}
         slidesPerView={'auto'}
         slidesOffsetBefore={24}
         slidesOffsetAfter={24}>
         {categoryCollection.map((category, index) => (
           <SwiperSlide
             key={category.id}
-            className='mr-3 lp:mr-0'
             virtualIndex={index}
             style={{ width: 'fit-content' }}>
             <BrickComponent
               text={category.name}
               active={category.name === activeCategory.name}
-              cStyles='lp:mr-6 lp:min-w-[140px]'
+              cStyles="lp:min-w-[140px]"
               onClick={() =>
                 setActiveCategory({ id: category.id, name: category.name })
               }

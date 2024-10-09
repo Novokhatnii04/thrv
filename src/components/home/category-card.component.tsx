@@ -16,19 +16,20 @@ export const CategoryCard = ({
   isRecommended = false,
   title,
   coupons = [],
-  cStyles = ''
+  cStyles = '',
 }: {
   category: { id: number; name: string };
   sectionId: number;
   isRecommended?: boolean;
   title: string;
   coupons: ICouponResponse[] | undefined;
-  cStyles?: string
+  cStyles?: string;
 }) => {
   return (
     <>
       <div className="rounded-lg">
-        <div className={`flex w-full justify-between px-6 pt-6 pb-2.5 ${cStyles}`}>
+        <div
+          className={`flex w-full justify-between px-6 pt-6 pb-2.5 ${cStyles}`}>
           <div className="text-lg font-bold text-gray-900">{title}</div>
           <Link
             href={`/section-details/${isRecommended ? `recommended` : sectionId}`}
@@ -53,7 +54,9 @@ export const CategoryCard = ({
             style={{ height: 'full' }}>
             {coupons?.map(coupon => {
               return (
-                <SwiperSlide key={coupon.id} className='mr-3 lp:mr-0 lp:max-w-[266px] dp:max-w-[374px]'>
+                <SwiperSlide
+                  key={coupon.id}
+                  className="mr-3 lp:mr-0 lp:max-w-[266px] dp:max-w-[374px]">
                   <CouponComponent key={coupon.id} coupon={coupon} />
                 </SwiperSlide>
               );

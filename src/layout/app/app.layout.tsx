@@ -31,19 +31,15 @@ export const AppLayout = ({
   const { ref, inView: inFooterView } = useInView({ threshold: 0.01 });
 
   const MobileLayout = (
-    <div className="min-h-full pb-6 lp:hidden">
-      {children}
-    </div>
-  )
+    <div className="min-h-full pb-6 lp:hidden">{children}</div>
+  );
 
   const DesktopLayout = (
-    <div className="min-h-full pb-6 hidden lp:flex">
+    <div className="min-h-full pb-6 hidden lp:flex max-w-[1920px] dp:m-auto">
       <NavigationBar />
-      <div className="overflow-hidden w-full">
-        {children}
-      </div>
+      <div className="overflow-hidden w-full">{children}</div>
     </div>
-  )
+  );
 
   return (
     <AnalyticsLayout>

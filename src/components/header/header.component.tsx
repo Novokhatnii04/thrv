@@ -24,9 +24,11 @@ import Link from 'next/link';
 import { SearchIcon } from '@/assets/icons/search.icon';
 import { LogoComponent } from '@/components/logo.component';
 import { SearchInput } from '../input/search-input';
-import SearchPageComponent from '@/pages/search/search.page';
 import { navigationLinks } from '@/entities/navigation-links';
-import NavigationLink, { ENavigationType, EResolutionType } from '../navigation/navigation-link.component';
+import NavigationLink, {
+  ENavigationType,
+  EResolutionType,
+} from '../navigation/navigation-link.component';
 import { usePathname } from 'next/navigation';
 
 export const Header = () => {
@@ -89,16 +91,19 @@ export const Header = () => {
     await readNotification(notificationRequest);
   };
 
-  const isReferralStatusEnabled = referralStatusData?.response.mode === 'enabled';
+  const isReferralStatusEnabled =
+    referralStatusData?.response.mode === 'enabled';
   const walletAmount = wallet?.response.wallet?.amount;
 
   const iconsContent = useMemo(() => {
-    if (!isClient) return <></>;
+    if (!isClient) {
+      return <></>;
+    }
 
     if (!isAuthenticated) {
       return (
         <div className="flex items-center">
-          <Link href="/search" className='block lp:hidden'>
+          <Link href="/search" className="block lp:hidden">
             <SearchIcon />
           </Link>
           <Link
@@ -131,7 +136,8 @@ export const Header = () => {
 
         <div className="hidden items-center lp:flex">
           <div className="mr-11" onClick={toggleNotificationsTrayHandler}>
-            <div className={`${notificationTrayState === ENotificationTrayState.Opened ? 'bg-[#FAB512C7]' : 'bg-transparent'} w-10 h-10 flex items-center justify-center rounded-full`}>
+            <div
+              className={`${notificationTrayState === ENotificationTrayState.Opened ? 'bg-[#FAB512C7]' : 'bg-transparent'} w-10 h-10 flex items-center justify-center rounded-full`}>
               <NotificationIcon
                 state={notificationIconState}
                 variant={notificationIconVariant}
@@ -139,29 +145,30 @@ export const Header = () => {
             </div>
           </div>
 
-          {navigationLinks.map(({ href, icon, title, authCheck = true }, index) => (
-            index === 3 && (
-              <NavigationLink
-                key={href}
-                href={href}
-                icon={icon}
-                pathName={pathName}
-                isAuthenticated={isAuthenticated}
-                setIsOpenModal={setIsOpenModal}
-                authCheck={authCheck}
-                resolutionType={EResolutionType.Desktop}
-                navigationStylesType={ENavigationType.Header}
-                title={title}
-              />
-            )
-          ))}
+          {navigationLinks.map(
+            ({ href, icon, title, authCheck = true }, index) =>
+              index === 3 && (
+                <NavigationLink
+                  key={href}
+                  href={href}
+                  icon={icon}
+                  pathName={pathName}
+                  isAuthenticated={isAuthenticated}
+                  setIsOpenModal={setIsOpenModal}
+                  authCheck={authCheck}
+                  resolutionType={EResolutionType.Desktop}
+                  navigationStylesType={ENavigationType.Header}
+                  title={title}
+                />
+              ),
+          )}
 
           {(isReferralStatusEnabled || (walletAmount ?? 0) > 0) && (
             <div className="ml-10">
               <WalletSmallComponent />
             </div>
           )}
-        </div >
+        </div>
       </>
     );
   }, [
@@ -175,10 +182,12 @@ export const Header = () => {
   ]);
 
   return (
-    <div className="mb-4 pt-4 px-6 lp:px-[30px] lp:pt-6 dp:px-[35px] dp:mb-1">
+    <div className="mb-4 pt-4 px-6 w-full max-w-[1920px] lp:px-[30px] lp:pt-6 dp:m-auto dp:px-[35px] dp:mb-1">
       <AuthModal isOpen={isAuthOpenModal} setIsOpen={setIsAuthOpenModal} />
       <div className="flex flex-2 justify-between pb-1 bg-white flex-wrap items-center sticky top-0 w-full z-50">
-        <LogoComponent main />
+        <div className="lp:w-[290px] dp:w-[343px]">
+          <LogoComponent main />
+        </div>
         <SearchInput cStyles="hidden lp:block mr-auto ml-0 lp:max-w-full lp:w-[699px] dp:w-[1090px]" />
         <div className="ml-1 flex items-center cursor-pointer">
           {iconsContent}
@@ -196,7 +205,7 @@ export const Header = () => {
               key={notification.id}
               notification={notification}
               closeClickHandler={onCloseNotification}
-              cStyles='absolute right-9 top-20 z-50 max-w-[460px]'
+              cStyles="absolute right-9 top-20 z-50 max-w-[460px]"
             />
           ))}
         </div>

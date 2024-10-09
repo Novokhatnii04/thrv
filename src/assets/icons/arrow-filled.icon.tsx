@@ -6,7 +6,7 @@ export enum EArrowFilledIconVariant {
   AuthBack,
   Bottom,
   Top,
-  Large
+  Large,
 }
 
 type ArrowFilledIconProps = {
@@ -50,7 +50,8 @@ export const ArrowIcon: React.FC<ArrowFilledIconProps> = ({
           strokeLinejoin="round"
         />
       )}
-      {(variant === EArrowFilledIconVariant.Right || variant === EArrowFilledIconVariant.Large) && (
+      {(variant === EArrowFilledIconVariant.Right ||
+        variant === EArrowFilledIconVariant.Large) && (
         <path
           d="M1 4.5L3 2.5L1 0.5"
           stroke="white"

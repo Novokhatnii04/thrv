@@ -37,8 +37,8 @@ module.exports = {
       },
     },
     screens: {
-      'lp': { "min": '1440px' },
-      'dp': { 'min': '1920px' },
+      lp: { min: '1440px' },
+      dp: { min: '1920px' },
     },
     extend: {
       fontFamily: {

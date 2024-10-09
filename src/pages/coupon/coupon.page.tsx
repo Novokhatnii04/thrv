@@ -11,45 +11,35 @@ import {
 } from '@/api/coupon-use/coupon-use.type';
 import {
   ECouponState,
-  ECouponType,
   ICouponApiResponse,
   ICouponRequest,
   ICouponResponse,
 } from '@/api/coupon/coupon.type';
-import {
-  ButtonComponent,
-  EButtonComponentState,
-  EButtonComponentVariant,
-} from '@/components/button/button.component';
-
+import { EButtonComponentState } from '@/components/button/button.component';
 import { AuthModal } from '@/components/modal/auth-modal.component';
-import { DOMAIN } from '@/config/api';
 import { useApi } from '@/hook/api.hook';
 import { useAuthStatus } from '@/hook/auth-status.hook';
 import { AppLayout } from '@/layout/app/app.layout';
-import moment from 'moment';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Loading } from '@/components/loding/loading.component';
 import { useAnalytics } from '@/hook/analytics.hook';
 import { BackButtonComponent } from '@/components/back-button/back-button.component';
-import { CopyClipboardIcon } from '@/assets/icons/copy-clipboard.icon';
 import { useSearchParams } from 'next/navigation';
 import { useUser } from '@/hook/user.hook';
 import { EUserStatus } from '@/api/register/register.type';
 import { copyToClipboard } from '@/utils/copyToClipboard';
 import { ClipboardModal } from '@/components/modal/clipboard-modal.component';
-import { usePreviousPath } from '@/store/previous-path.store';
 import {
   ICouponNotUsedApiRequest,
   ICouponNotUsedApiResponse,
 } from '@/api/coupon-not-used/coupon-not-used.type';
+import CouponLayout from './coupon.layout';
+import { EResolutionType } from '@/components/navigation/navigation-link.component';
 
 const CouponPage = ({ params }: { params: { id: string } }) => {
   const searchParams = useSearchParams();
   const { user } = useUser();
   const { logFirebaseEvent, logPixelEvent } = useAnalytics();
-
-  const { previousPath } = usePreviousPath();
 
   const { isAuthenticated } = useAuthStatus();
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -277,82 +267,26 @@ const CouponPage = ({ params }: { params: { id: string } }) => {
         setIsOpen={setIsCopyClipboardModalOpen}
         goToSitePressHandler={() => (window.location.href = coupon.shop_link)}
       />
-      <div className="grid gap-4 px-6 sm:mx-auto sm:max-w-[576px]">
+      <div className="grid gap-4 px-6 lp:gap-8 sm:mx-auto sm:max-w-[576px] lp:pr-12">
         <div className="grid-cols-3 grid">
           <BackButtonComponent />
-          <span className="text-xl text-nowrap text-center uppercase text-brand-dark font-bold">
+          <span
+            className={`block text-xl text-nowrap text-center uppercase text-brand-dark font-bold lp:hidden`}>
             {coupon?.brand?.name}
           </span>
         </div>
-        <div className="p-2 rounded-2xl border border-[#6EEAD2]">
-          <img
-            src={DOMAIN + (coupon?.main_image ?? coupon?.brand.logo)}
-            alt={coupon?.title}
-            className="aspect-video w-full object-cover rounded-xl"
-          />
-          <div className="mt-5 p-2 pt-0">
-            {couponCode ? (
-              <div className="flex flex-col items-center">
-                <div className="mb-2 uppercase">Coupon code</div>
-                <div className="flex items-center text-3xl font-bold text-brand-black">
-                  {couponCode.code}
-                  {couponCode && (
-                    <div
-                      className="ml-4 h-5 min-w-5 w-5 hover:opacity-80"
-                      onClick={() => copyClipboard()}>
-                      <CopyClipboardIcon />
-                    </div>
-                  )}
-                </div>
-              </div>
-            ) : (
-              coupon.description
-            )}
-          </div>
-        </div>
-        {!couponCode ? (
-          coupon.type !== ECouponType.Link ? (
-            <div onClick={() => requestCodeHandler(coupon)}>
-              <a
-                href={`${window.location.href}?use=true&previousPath=${previousPath}`}
-                target="_blank"
-                className={`${!isAuthenticated ? 'pointer-events-none' : ''}`}
-                rel="noopener noreferrer">
-                <ButtonComponent
-                  variant={EButtonComponentVariant.Filled}
-                  state={buttonCodeState}
-                  label={'Request a code'}
-                />
-              </a>
-            </div>
-          ) : (
-            <ButtonComponent
-              variant={EButtonComponentVariant.Filled}
-              state={buttonCodeState}
-              label={'Go to shop'}
-              onClick={() => goToWebsitePressHandlerWithPreview(coupon)}
-            />
-          )
-        ) : (
-          <ButtonComponent
-            variant={EButtonComponentVariant.Filled}
-            state={
-              couponUseLoading
-                ? EButtonComponentState.Loading
-                : EButtonComponentState.Active
-            }
-            label={'Use code'}
-            onClick={useCodeHandler}
-          />
-        )}
-        <ButtonComponent
-          variant={EButtonComponentVariant.WhiteOutline}
-          label={'Browse Products'}
-          onClick={browseProductsHandler}
+
+        <CouponLayout
+          coupon={coupon}
+          couponCode={couponCode}
+          copyClipboard={copyClipboard}
+          requestCodeHandler={requestCodeHandler}
+          buttonCodeState={buttonCodeState}
+          webRedirectHandler={goToWebsitePressHandlerWithPreview}
+          couponUseLoading={couponUseLoading}
+          useCodeHandler={useCodeHandler}
+          browseProductsHandler={browseProductsHandler}
         />
-        <div className="text-center text-xs text-brand-black w-full ">
-          Expires: {moment(coupon.end_date).format('MMM Do YYYY')}
-        </div>
       </div>
     </AppLayout>
   );

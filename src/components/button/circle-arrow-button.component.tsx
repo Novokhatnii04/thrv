@@ -9,7 +9,7 @@ export enum ECircleArrowButtonComponentVariant {
   Right,
   AuthBack,
   LargeR,
-  LargeL
+  LargeL,
 }
 
 type CircleArrowButtonComponentProps = {
@@ -41,7 +41,9 @@ export const CircleArrowButtonComponent: React.FC<
       break;
   }
 
-  const isLarge = variant === ECircleArrowButtonComponentVariant.LargeL || variant === ECircleArrowButtonComponentVariant.LargeR
+  const isLarge =
+    variant === ECircleArrowButtonComponentVariant.LargeL ||
+    variant === ECircleArrowButtonComponentVariant.LargeR;
 
   const buttonSize =
     variant === ECircleArrowButtonComponentVariant.AuthBack || isLarge
@@ -54,8 +56,8 @@ export const CircleArrowButtonComponent: React.FC<
       : 'bg-brand-dark';
 
   const buttonPadding =
-    variant === ECircleArrowButtonComponentVariant.AuthBack || isLarge 
-      ? 'p-2' 
+    variant === ECircleArrowButtonComponentVariant.AuthBack || isLarge
+      ? 'p-2'
       : 'p-1 lp:p-2';
 
   return (

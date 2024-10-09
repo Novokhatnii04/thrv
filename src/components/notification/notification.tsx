@@ -19,13 +19,13 @@ type NotificationComponentProps = {
     id: number;
     was_read: boolean;
   }) => Promise<void>;
-  cStyles?: string
+  cStyles?: string;
 };
 
 export const NotificationComponent: React.FC<NotificationComponentProps> = ({
   notification,
   closeClickHandler,
-  cStyles = ''
+  cStyles = '',
 }) => {
   const [variant, setVariant] = useState<ENotificationComponentVariant>(
     ENotificationComponentVariant.Warning,
@@ -49,26 +49,22 @@ export const NotificationComponent: React.FC<NotificationComponentProps> = ({
     }
   }, [notification]);
 
-  const notificationWrapperStyle = cStyles
-    ? cStyles
-    : 'relative';
+  const notificationWrapperStyle = cStyles ? cStyles : 'relative';
 
   const notificationBorderColor =
     variant === ENotificationComponentVariant.Warning
-      // ? 'border-warning-yellow'
-      ? 'border-none shadow'
+      ? // ? 'border-warning-yellow'
+        'border-none shadow'
       : 'border-warning-red';
 
   const notificationBgColor =
     variant === ENotificationComponentVariant.Warning
-      // ? 'bg-warning-yellow-light'
-      ? 'bg-white'
+      ? // ? 'bg-warning-yellow-light'
+        'bg-white'
       : 'bg-warning-red-light';
 
   const notificationTextColor =
-    variant === ENotificationComponentVariant.Warning
-      ? 'text-[#FAB512]'
-      : ''
+    variant === ENotificationComponentVariant.Warning ? 'text-[#FAB512]' : '';
 
   return (
     <div className={notificationWrapperStyle}>

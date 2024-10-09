@@ -11,7 +11,7 @@ export const BrickComponent: React.FC<BrickProps> = ({
   active,
   onClick,
   text,
-  cStyles = ''
+  cStyles = '',
 }) => {
   return (
     <div

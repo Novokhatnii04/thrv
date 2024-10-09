@@ -3,11 +3,11 @@ import { MouseEvent, FC, useCallback, useState, useEffect } from 'react';
 
 export enum EResolutionType {
   Mobile,
-  Desktop
+  Desktop,
 }
 
 export enum ENavigationType {
-  Header
+  Header,
 }
 
 interface NavigationLinkProps {
@@ -17,9 +17,9 @@ interface NavigationLinkProps {
   isAuthenticated: boolean;
   setIsOpenModal: (isOpen: boolean) => void;
   authCheck?: boolean;
-  resolutionType: EResolutionType,
-  navigationStylesType?: ENavigationType | null,
-  title?: string
+  resolutionType: EResolutionType;
+  navigationStylesType?: ENavigationType | null;
+  title?: string;
 }
 
 const NavigationLink: FC<NavigationLinkProps> = ({
@@ -31,7 +31,7 @@ const NavigationLink: FC<NavigationLinkProps> = ({
   authCheck = true,
   resolutionType,
   title,
-  navigationStylesType = null
+  navigationStylesType = null,
 }) => {
   const [isHydrated, setIsHydrated] = useState(false);
   const isActive = pathName === href;
@@ -54,13 +54,17 @@ const NavigationLink: FC<NavigationLinkProps> = ({
     return null;
   }
 
-  const textStyles = 'text-[#000000] text-xl font-bold'
+  const textStyles = 'text-black text-xl font-bold';
 
-  if (navigationStylesType === ENavigationType.Header && EResolutionType.Desktop) {
+  if (
+    navigationStylesType === ENavigationType.Header &&
+    EResolutionType.Desktop
+  ) {
     return (
       <Link href={href} aria-disabled={!isAuthenticated} onClick={handleClick}>
-        <div className={`flex gap-[15px] justify-start items-center bg-transparent`}>
-          <Icon fill='#000000' />
+        <div
+          className={`flex gap-[15px] justify-start items-center bg-transparent`}>
+          <Icon fill="#000000" />
           <h1 className={textStyles}>{title}</h1>
         </div>
       </Link>
@@ -70,10 +74,14 @@ const NavigationLink: FC<NavigationLinkProps> = ({
   if (resolutionType === EResolutionType.Desktop) {
     return (
       <Link href={href} aria-disabled={!isAuthenticated} onClick={handleClick}>
-        <div className={`flex w-[230px] pl-[27px] gap-[15px] h-[59px] justify-start items-center dp:w-[301px] 
+        <div
+          className={`flex w-[230px] pl-[27px] gap-[15px] h-[59px] justify-start items-center dp:w-[301px] 
           ${isActive ? 'bg-[#6EEAD21A]' : 'bg-white'} rounded-xl`}>
-          <Icon fill={isActive ? '#000000' : '#A4A4A5'} />
-          <h1 className={`${isActive ? 'text-[#000000] font-bold' : 'text-[#A4A4A5] font-normal'} text-xl`}>{title}</h1>
+          <Icon fill={isActive ? 'black' : '#A4A4A5'} />
+          <h1
+            className={`${isActive ? 'text-black font-bold' : 'text-[#A4A4A5] font-normal'} text-xl`}>
+            {title}
+          </h1>
         </div>
       </Link>
     );

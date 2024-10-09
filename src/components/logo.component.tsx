@@ -12,16 +12,14 @@ export const LogoComponent = ({
   main?: boolean;
 }) => {
   return (
-    <div className='lp:w-[290px] dp:w-[343px]'>
-      <Image
-        src={main ? MainLogo : Logo}
-        alt="logo"
-        width={width}
-        height={height}
-        style={{ background: 'transparent' }}
-        layout="intrinsic"
-        priority
-      />
-    </div>
+    <Image
+      src={main ? MainLogo : Logo}
+      alt="logo"
+      width={width}
+      height={height}
+      style={{ background: 'transparent' }}
+      layout="intrinsic"
+      priority
+    />
   );
 };

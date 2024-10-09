@@ -6,7 +6,10 @@ import {
   ISectionCollectionApiResponse,
   ISectionCollectionByCategoryRequest,
 } from '@/api/section/section.type';
-import { BrandsList, EBrandListLayoutType } from '@/components/home/brands-list.component';
+import {
+  BrandsList,
+  EBrandListLayoutType,
+} from '@/components/home/brands-list.component';
 import { CategoryCard } from '@/components/home/category-card.component';
 import { CategoryPicker } from '@/components/home/category-picker.component';
 import { RecommendedSection } from '@/components/home/recommended-section.component';
@@ -51,7 +54,12 @@ const HomePage = () => {
         setActiveCategory={setActiveCategory}
       />
       <RecommendedSection category={activeCategory} />
-      <BrandsList category={activeCategory} resolutionType={EResolutionType.Mobile} layoutType={EBrandListLayoutType.Slider} cStyles="lp:hidden" />
+      <BrandsList
+        category={activeCategory}
+        resolutionType={EResolutionType.Mobile}
+        layoutType={EBrandListLayoutType.Slider}
+        cStyles="lp:hidden"
+      />
       {sectionCollectionResponseData?.response?.map(section => {
         if (section.coupons.length === 0) {
           return null;
@@ -63,7 +71,7 @@ const HomePage = () => {
             sectionId={section.id}
             title={section.title}
             coupons={section.coupons}
-            cStyles='px-6 pt-6 pb-2.5 lp:pr-[43px] dp:pb-6 dp:pl-6 dp:pr-[55px]'
+            cStyles="px-6 pt-6 pb-2.5 lp:pr-[43px] dp:pb-6 dp:pl-6 dp:pr-[55px]"
           />
         );
       })}
