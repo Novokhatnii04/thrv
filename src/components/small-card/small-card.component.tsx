@@ -5,6 +5,7 @@ import { ClipboardModal } from '@/components/modal/clipboard-modal.component';
 import { BrandLogo } from '@/components/brand/brand-logo';
 import { copyToClipboard } from '@/utils/copyToClipboard';
 import { useRouter } from 'next/navigation';
+import ArrowButton from '../arrow-button/arrow-button.component';
 
 type SmallCardComponentProps = {
   id: number;
@@ -84,20 +85,27 @@ export const SmallCard: React.FC<SmallCardComponentProps> = ({
       />
       <div
         onClick={handleClick}
-        className={`${disable ? 'opacity-40 pointer-events-none' : ''} text-sm px-6 py-2.5 border border-brand-green rounded-2xl flex justify-between items-center w-full`}>
-        {title}
-        {historyCode && coupon.type !== ECouponType.Link && (
-          <div className="flex flex-grow flex-shrink px-2.5 flex-row items-center">
-            <span className="mr-2.5 text-sm text-brand-dark">
-              {historyCode}
-            </span>
-            <div
-              className="h-5 min-w-5 w-5 hover:opacity-80"
-              onClick={onHistoryCodeCopyButtonPressHandler}>
-              <CopyClipboardIcon />
+        className={`${disable ? 'opacity-40 pointer-events-none' : ''} text-sm px-6 py-2.5 border border-brand-green lp:border-brand-gray600 rounded-2xl flex justify-between items-center w-full lp:flex-row-reverse lp:justify-end lp:gap-7`}>
+        <div className="hidden lp:block ml-auto">
+          <ArrowButton
+            cStyles={disable ? 'bg-brand-gray600' : 'bg-brand-green'}
+          />
+        </div>
+        <div className="flex items-center lp:flex-col lp:items-start lp:text-base">
+          {title}
+          {historyCode && coupon.type !== ECouponType.Link && (
+            <div className="flex flex-grow flex-shrink px-2.5 lp:px-0 flex-row items-center">
+              <span className="mr-2.5 text-sm lp:text-base text-brand-dark">
+                {historyCode}
+              </span>
+              <div
+                className="h-5 min-w-5 w-5 hover:opacity-80"
+                onClick={onHistoryCodeCopyButtonPressHandler}>
+                <CopyClipboardIcon />
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
         <BrandLogo brand={coupon.brand} />
       </div>
     </>

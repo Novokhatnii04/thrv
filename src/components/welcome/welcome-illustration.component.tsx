@@ -4,18 +4,17 @@ import { EResolutionType } from '../navigation/navigation-link.component';
 interface TAuthIllustration {
   cStyles?: string;
   type?: EResolutionType;
-};
+}
 
 export const WelcomeIllustration: React.FC<TAuthIllustration> = ({
   cStyles = '',
   type = EResolutionType.Mobile,
 }) => {
-
   const commonSvgProps = {
-    width: "100%",
-    height: "100%",
-    fill: "none",
-    className: cStyles
+    width: '100%',
+    height: '100%',
+    fill: 'none',
+    className: cStyles,
   };
 
   return (
@@ -37,10 +36,34 @@ export const WelcomeIllustration: React.FC<TAuthIllustration> = ({
             stroke="white"
             strokeOpacity="0.25"
           />
-          <ellipse cx="112.995" cy="241.701" rx="54.9979" ry="54.932" fill="white" />
-          <ellipse cx="280.989" cy="108.865" rx="54.9979" ry="54.932" fill="white" />
-          <ellipse cx="112.996" cy="241.701" rx="30.9988" ry="30.9617" fill="black" />
-          <ellipse cx="280.989" cy="108.865" rx="29.9989" ry="29.9629" fill="black" />
+          <ellipse
+            cx="112.995"
+            cy="241.701"
+            rx="54.9979"
+            ry="54.932"
+            fill="white"
+          />
+          <ellipse
+            cx="280.989"
+            cy="108.865"
+            rx="54.9979"
+            ry="54.932"
+            fill="white"
+          />
+          <ellipse
+            cx="112.996"
+            cy="241.701"
+            rx="30.9988"
+            ry="30.9617"
+            fill="black"
+          />
+          <ellipse
+            cx="280.989"
+            cy="108.865"
+            rx="29.9989"
+            ry="29.9629"
+            fill="black"
+          />
           <path
             d="M233.544 186.143C214.767 186.06 199.544 201.215 199.544 219.993L199.544 319.993L219.544 320.081C238.322 320.164 253.544 305.009 253.544 286.231L253.544 186.231L233.544 186.143Z"
             fill="#FFE9C5"
@@ -81,10 +104,34 @@ export const WelcomeIllustration: React.FC<TAuthIllustration> = ({
                 strokeOpacity="0.25"
                 strokeWidth="4.93878"
               />
-              <ellipse cx="551.937" cy="786.961" rx="271.622" ry="271.297" fill="white" />
-              <ellipse cx="1381.62" cy="130.92" rx="271.622" ry="271.297" fill="white" />
-              <ellipse cx="551.937" cy="786.959" rx="153.096" ry="152.913" fill="black" />
-              <ellipse cx="1381.62" cy="130.912" rx="148.158" ry="147.98" fill="black" />
+              <ellipse
+                cx="551.937"
+                cy="786.961"
+                rx="271.622"
+                ry="271.297"
+                fill="white"
+              />
+              <ellipse
+                cx="1381.62"
+                cy="130.92"
+                rx="271.622"
+                ry="271.297"
+                fill="white"
+              />
+              <ellipse
+                cx="551.937"
+                cy="786.959"
+                rx="153.096"
+                ry="152.913"
+                fill="black"
+              />
+              <ellipse
+                cx="1381.62"
+                cy="130.912"
+                rx="148.158"
+                ry="147.98"
+                fill="black"
+              />
               <path
                 d="M1147.3 512.578C1054.56 512.168 979.386 587.015 979.386 679.754L979.386 1173.63L1078.16 1174.07C1170.9 1174.48 1246.08 1099.63 1246.08 1006.89L1246.08 513.014L1147.3 512.578Z"
                 fill="#FFE9C5"

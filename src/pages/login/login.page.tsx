@@ -54,8 +54,7 @@ const LoginPage = () => {
       </h3>
       <span className="font-[16px] text-white mt-2 leading-5">
         Don’t have an account?{' '}
-        <Link href="/sign-up"
-          className="text-brand-green">
+        <Link href="/sign-up" className="text-brand-green">
           Sign up
         </Link>
       </span>

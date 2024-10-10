@@ -2,7 +2,7 @@ import React from 'react';
 
 interface TAuthIllustration {
   cStyles?: string;
-};
+}
 
 export const AuthIllustration: React.FC<TAuthIllustration> = ({
   cStyles = '',

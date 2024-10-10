@@ -7,8 +7,11 @@ import { useGroupByDate } from '@/hook/group-by-date.hook';
 import { AppLayout } from '@/layout/app/app.layout';
 import { useEffect, useMemo } from 'react';
 import { SmallCard } from '@/components/small-card/small-card.component';
+// import { CategoryPicker } from '@/components/home/category-picker.component';
+// import { useActiveCategory } from '@/store/active-category.store';
 
 const HistoryPage = () => {
+  // const { activeCategory, setActiveCategory } = useActiveCategory();
   const { group } = useGroupByDate();
   const {
     data: historyCouponsResponse,
@@ -34,6 +37,7 @@ const HistoryPage = () => {
 
   return (
     <AppLayout>
+      {/* <CategoryPicker activeCategory={activeCategory} setActiveCategory={setActiveCategory} /> */}
       <div className="px-6">
         <h3 className="font-bold text-xl mb-2.5">Used coupons</h3>
         {history.length ? (
@@ -41,7 +45,7 @@ const HistoryPage = () => {
             {history.map(item => (
               <div key={item.title} className="grid gap-2.5">
                 <div className="text-sm">{item.title}</div>
-                <div className="grid gap-2 sm:grid-cols-2 sm:justify-between">
+                <div className="grid gap-2 sm:grid-cols-2 sm:justify-between lp:gap-4">
                   {item?.data?.map((data, index) => (
                     <div key={`${data.id + index}`}>
                       <SmallCard

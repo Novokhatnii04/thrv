@@ -162,7 +162,7 @@ const ResetPasswordPage = () => {
             label="Save new password"
             state={
               validatePassword(newPassword.password) &&
-                newPassword.password === newPassword.confirmPassword
+              newPassword.password === newPassword.confirmPassword
                 ? EButtonComponentState.Active
                 : EButtonComponentState.Disabled
             }
