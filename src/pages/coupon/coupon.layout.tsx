@@ -113,7 +113,7 @@ const CouponLayout: FC<ICouponLayout> = ({
     <>
       {/* Mobile */}
       <div className="lp:hidden flex flex-col gap-4">
-        <div className="p-2 rounded-2xl border border-[#6EEAD2] lp:hidden">
+        <div className="p-2 rounded-2xl border border-brand-green lp:hidden">
           {ImageBrandRender('w-full')}
 
           <div className="mt-5 p-2 pt-0">
@@ -139,7 +139,7 @@ const CouponLayout: FC<ICouponLayout> = ({
       </div>
 
       {/* Desktop */}
-      <div className="hidden lp:flex justify-between items-start p-8 min-h-[411px] w-full max-w-[1497px] rounded-2xl border border-[#6EEAD2]">
+      <div className="hidden lp:flex justify-between items-start p-8 min-h-[411px] w-full max-w-[1497px] rounded-2xl border border-brand-green">
         <div className="flex flex-col w-[342px] items-start gap-6">
           <span
             className={`block text-xl text-nowrap text-center uppercase text-brand-dark font-bold lp:font-extrabold`}>

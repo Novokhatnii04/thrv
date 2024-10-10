@@ -89,7 +89,7 @@ const LoginPage = () => {
         <div className="mb-4 lp:mb-12 lp:ml-auto">
           <div className={`text-sm lp:text-base text-brand-white`}>
             Forgot your{' '}
-            <Link href="/reset-password" className="text-[#6EEAD2]">
+            <Link href="/reset-password" className="text-brand-green">
               Password?
             </Link>
           </div>

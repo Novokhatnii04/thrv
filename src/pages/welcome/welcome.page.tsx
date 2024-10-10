@@ -59,7 +59,7 @@ const WelcomePage = () => {
             You can skip the authorisation process and{' '}
             <span
               onClick={handlePreview}
-              className="text-[#6EEAD2] cursor-pointer">
+              className="text-brand-green cursor-pointer">
               try out the app.
             </span>
           </div>
@@ -73,7 +73,7 @@ const WelcomePage = () => {
       <>
         <AuthLayoutTitle cStyles="leading-[48px]">
           We make the world more{' '}
-          <span className="font-normal text-[#6EEAD2]"> affordable.</span>
+          <span className="font-normal text-brand-green"> affordable.</span>
         </AuthLayoutTitle>
         <div className="text-white mt-5 font-normal text-lg">
           Easily and quickly access hot deals and exclusive discounts from the
@@ -83,7 +83,7 @@ const WelcomePage = () => {
           You can skip the authorisation process and{' '}
           <span
             onClick={handlePreview}
-            className="text-[#6EEAD2] cursor-pointer">
+            className="text-brand-green cursor-pointer">
             try out the app.
           </span>
         </div>
