@@ -1,6 +1,6 @@
 import React from 'react';
 
-type TAuthIllustration = {
+interface TAuthIllustration {
   cStyles?: string;
 };
 

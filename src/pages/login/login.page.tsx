@@ -16,7 +16,6 @@ import { useAuth } from '@/hook/auth.hook';
 import { useValidate } from '@/hook/validate.hook';
 import Link from 'next/link';
 import { LogoComponent } from '@/components/logo.component';
-import { useRouter } from 'next/navigation';
 
 export type ISignInUser = {
   email: string;
@@ -24,8 +23,6 @@ export type ISignInUser = {
 };
 
 const LoginPage = () => {
-  const router = useRouter();
-
   const { validateEmail, validatePassword } = useValidate();
 
   const { sighInUser, setSighInUser, login } = useAuth();
@@ -57,11 +54,10 @@ const LoginPage = () => {
       </h3>
       <span className="font-[16px] text-white mt-2 leading-5">
         Don’t have an account?{' '}
-        <span
-          className="text-brand-green"
-          onClick={() => router.push('/sign-up')}>
+        <Link href="/sign-up"
+          className="text-brand-green">
           Sign up
-        </span>
+        </Link>
       </span>
     </div>
   );

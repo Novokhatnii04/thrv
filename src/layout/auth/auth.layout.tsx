@@ -1,4 +1,5 @@
 'use client';
+import { ReactNode } from 'react';
 import {
   CircleArrowButtonComponent,
   ECircleArrowButtonComponentVariant,
@@ -14,7 +15,6 @@ import {
   EButtonComponentVariant,
 } from '@/components/button/button.component';
 import Logo2 from '@/assets/logo/logoIcon';
-import { ReactNode } from 'react';
 import { LogoComponent } from '@/components/logo.component';
 
 export enum EAuthLayoutType {
@@ -22,8 +22,8 @@ export enum EAuthLayoutType {
   SignUp,
 }
 interface AuthLayoutProps {
-  children: React.ReactNode;
-  authFormChildren?: React.ReactNode;
+  children: ReactNode;
+  authFormChildren?: ReactNode;
   title: string;
   type?: EAuthLayoutType;
 }
@@ -32,7 +32,7 @@ export const AuthLayoutTitle = ({
   children,
   cStyles = '',
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   cStyles?: string;
 }) => {
   return (
@@ -106,7 +106,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({
       />
       <div className="w-full z-10 min-w-[846px] max-w-[1132px] bg-[#1B1B1B] my-[20vh] rounded-[40px]">
         <div className="flex justify-between py-[60px] px-[120px]">
-          <div className="w-[47%]">{authFormChildren}</div>
+          <div className="w-[48%]">{authFormChildren}</div>
           <div className="w-[48%]">{children}</div>
         </div>
       </div>
@@ -117,7 +117,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({
     <AnalyticsLayout>
       <div className="hidden lp:flex justify-between top-8 left-1/2 transform -translate-x-1/2 w-full max-w-[1920px] z-20 px-24 absolute">
         <div
-          className="flex items-center gap-2.5"
+          className="flex items-center gap-2.5 cursor-pointer"
           onClick={() => router.push('/')}>
           <Logo2 />
           <LogoComponent />

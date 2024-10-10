@@ -37,7 +37,7 @@ const WelcomePage = () => {
           <div className="text-[34px] text-white font-black">
             We make the world <br />
             more{' '}
-            <span className="font-normal text-[#6EEAD2]"> affordable.</span>
+            <span className="font-normal text-brand-green"> affordable.</span>
           </div>
           <div className="text-white my-4 text-sm font-normal">
             Easily and quickly access hot deals and exclusive discounts from the
