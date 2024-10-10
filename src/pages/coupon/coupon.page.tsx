@@ -34,7 +34,6 @@ import {
   ICouponNotUsedApiResponse,
 } from '@/api/coupon-not-used/coupon-not-used.type';
 import CouponLayout from './coupon.layout';
-import { EResolutionType } from '@/components/navigation/navigation-link.component';
 
 const CouponPage = ({ params }: { params: { id: string } }) => {
   const searchParams = useSearchParams();

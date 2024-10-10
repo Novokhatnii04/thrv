@@ -3,7 +3,10 @@ import {
   ButtonComponent,
   EButtonComponentState,
 } from '@/components/button/button.component';
-import { InputComponent } from '@/components/input/input.component';
+import {
+  InputComponent,
+  InputTitleComponent,
+} from '@/components/input/input.component';
 import { ISignUpUser } from '@/hook/auth.hook';
 import { useValidate } from '@/hook/validate.hook';
 import { useEffect } from 'react';
@@ -72,6 +75,7 @@ const SignUpFirstStep = ({
   return (
     <>
       <div className="mb-4">
+        <InputTitleComponent>Email</InputTitleComponent>
         <InputComponent
           value={signUpUser?.email}
           setValue={setEmail}
@@ -81,6 +85,7 @@ const SignUpFirstStep = ({
         />
       </div>
       <div className="mb-4">
+        <InputTitleComponent>Password</InputTitleComponent>
         <InputComponent
           value={signUpUser?.password}
           setValue={setPassword}
@@ -90,6 +95,7 @@ const SignUpFirstStep = ({
         />
       </div>
       <div className="mb-4">
+        <InputTitleComponent>Confirm password</InputTitleComponent>
         <InputComponent
           value={confirmPassword}
           setValue={confirmPasswordHandle}
@@ -99,6 +105,7 @@ const SignUpFirstStep = ({
         />
       </div>
       <ButtonComponent
+        cStyles="lp:mt-[44px]"
         label="Next Step"
         state={
           isValid

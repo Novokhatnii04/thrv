@@ -3,7 +3,10 @@ import {
   ButtonComponent,
   EButtonComponentState,
 } from '@/components/button/button.component';
-import { InputComponent } from '@/components/input/input.component';
+import {
+  InputComponent,
+  InputTitleComponent,
+} from '@/components/input/input.component';
 import { ISignUpUser } from '@/hook/auth.hook';
 import { DateInputComponent } from '@/components/input/date-input.component';
 
@@ -40,6 +43,7 @@ const SignUpSecondStep = ({
   return (
     <>
       <div className="mb-4">
+        <InputTitleComponent>First name</InputTitleComponent>
         <InputComponent
           value={signUpUser?.first_name}
           setValue={setFirstName}
@@ -47,6 +51,7 @@ const SignUpSecondStep = ({
         />
       </div>
       <div className="mb-4">
+        <InputTitleComponent>Last name</InputTitleComponent>
         <InputComponent
           value={signUpUser?.second_name}
           setValue={setSecondName}
@@ -61,6 +66,7 @@ const SignUpSecondStep = ({
         isPhone
       /> */}
       <div className="mb-4">
+        <InputTitleComponent>Date of birth</InputTitleComponent>
         <DateInputComponent
           value={(signUpUser?.date_of_birth as Date) ?? null}
           setValue={setDateOfBirth}
@@ -69,6 +75,7 @@ const SignUpSecondStep = ({
         />
       </div>
       <ButtonComponent
+        cStyles="mt-[44px]"
         label="Sign up"
         state={
           isValid

@@ -3,11 +3,20 @@ import {
   ButtonComponent,
   EButtonComponentState,
 } from '@/components/button/button.component';
-import { InputComponent } from '@/components/input/input.component';
-import { AuthLayout } from '@/layout/auth/auth.layout';
+import {
+  InputComponent,
+  InputTitleComponent,
+} from '@/components/input/input.component';
+import {
+  AuthLayout,
+  AuthLayoutTitle,
+  EAuthLayoutType,
+} from '@/layout/auth/auth.layout';
 import { useAuth } from '@/hook/auth.hook';
 import { useValidate } from '@/hook/validate.hook';
 import Link from 'next/link';
+import { LogoComponent } from '@/components/logo.component';
+import { useRouter } from 'next/navigation';
 
 export type ISignInUser = {
   email: string;
@@ -15,6 +24,8 @@ export type ISignInUser = {
 };
 
 const LoginPage = () => {
+  const router = useRouter();
+
   const { validateEmail, validatePassword } = useValidate();
 
   const { sighInUser, setSighInUser, login } = useAuth();
@@ -37,10 +48,32 @@ const LoginPage = () => {
     validateEmail(sighInUser.email) &&
     validatePassword(sighInUser.password);
 
+  const authFormLayout = (
+    <div className="flex flex-col">
+      <LogoComponent width={255} height={61} />
+      <AuthLayoutTitle cStyles="mt-6">Welcome back !</AuthLayoutTitle>
+      <h3 className="font-normal text-lg text-white mt-2 leading-6">
+        Please enter your details
+      </h3>
+      <span className="font-[16px] text-white mt-2 leading-5">
+        Don’t have an account?{' '}
+        <span
+          className="text-brand-green"
+          onClick={() => router.push('/sign-up')}>
+          Sign up
+        </span>
+      </span>
+    </div>
+  );
+
   return (
-    <AuthLayout title="Login">
+    <AuthLayout
+      title="Login"
+      authFormChildren={authFormLayout}
+      type={EAuthLayoutType.SignIn}>
       <div className="text-white mb-1 flex flex-col">
-        <div className="mb-4">
+        <div className="mb-4 lp:mb-6">
+          <InputTitleComponent>Email</InputTitleComponent>
           <InputComponent
             value={sighInUser.email}
             setValue={setEmail}
@@ -48,7 +81,8 @@ const LoginPage = () => {
             type="email"
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 lp:mb-6">
+          <InputTitleComponent>Password</InputTitleComponent>
           <InputComponent
             value={sighInUser.password}
             setValue={setPassword}
@@ -56,8 +90,8 @@ const LoginPage = () => {
             type="password"
           />
         </div>
-        <div className="mb-4">
-          <div className={`text-sm text-brand-white`}>
+        <div className="mb-4 lp:mb-12 lp:ml-auto">
+          <div className={`text-sm lp:text-base text-brand-white`}>
             Forgot your{' '}
             <Link href="/reset-password" className="text-[#6EEAD2]">
               Password?

@@ -4,8 +4,11 @@ import {
   EButtonComponentState,
   EButtonComponentVariant,
 } from '@/components/button/button.component';
-import { InputComponent } from '@/components/input/input.component';
-import { AuthLayout } from '@/layout/auth/auth.layout';
+import {
+  InputComponent,
+  InputTitleComponent,
+} from '@/components/input/input.component';
+import { AuthLayout, AuthLayoutTitle } from '@/layout/auth/auth.layout';
 import { useAuth } from '@/hook/auth.hook';
 import { useValidate } from '@/hook/validate.hook';
 import { useRouter } from 'next/navigation';
@@ -80,10 +83,20 @@ const ResetPasswordPage = () => {
   };
 
   if (step === 2) {
+    const authFormLayout = (
+      <div>
+        <AuthLayoutTitle cStyles="mb-2">Password reset</AuthLayoutTitle>
+        <span className="text-sm text-brand-white leading-6 mb-4">
+          We've sent an email with instructions to reset your password. Please
+          check your email app and enter a code to continue
+        </span>
+      </div>
+    );
+
     return (
-      <AuthLayout title="Reset Password">
+      <AuthLayout title="Reset Password" authFormChildren={authFormLayout}>
         <div className="mb-1 flex flex-col">
-          <span className="text-sm text-brand-white leading-6 mb-4">
+          <span className="text-sm text-brand-white leading-6 mb-4 lp:hidden">
             We've sent an email with instructions to reset your password. Please
             check your email app and enter a code to continue
           </span>
@@ -111,12 +124,22 @@ const ResetPasswordPage = () => {
   }
 
   if (step === 3) {
+    const authFormLayout = (
+      <div>
+        <AuthLayoutTitle cStyles="mb-2">New password</AuthLayoutTitle>
+        <span className="text-lg mt-2 text-brand-white leading-6">
+          Your new password must be different from previous used passwords.
+        </span>
+      </div>
+    );
+
     return (
-      <AuthLayout title="New Password">
-        <div className="mb-1 grid gap-4">
-          <span className="text-sm text-brand-white leading-6">
+      <AuthLayout title="New Password" authFormChildren={authFormLayout}>
+        <div className="mb-1 grid gap-4 lp:gap-0">
+          <span className="text-sm text-brand-white leading-6 lp:hidden">
             Your new password must be different from previous used passwords.
           </span>
+          <InputTitleComponent cStyles="mb-4">Password</InputTitleComponent>
           <InputComponent
             placeholder="New Password"
             value={newPassword.password}
@@ -124,6 +147,9 @@ const ResetPasswordPage = () => {
             validator={validatePassword}
             type="password"
           />
+          <InputTitleComponent cStyles="mt-6 mb-0">
+            Confirm password
+          </InputTitleComponent>
           <InputComponent
             placeholder="Confirm Password"
             value={newPassword.confirmPassword}
@@ -132,10 +158,11 @@ const ResetPasswordPage = () => {
             type="password"
           />
           <ButtonComponent
+            cStyles="mt-8"
             label="Save new password"
             state={
               validatePassword(newPassword.password) &&
-              newPassword.password === newPassword.confirmPassword
+                newPassword.password === newPassword.confirmPassword
                 ? EButtonComponentState.Active
                 : EButtonComponentState.Disabled
             }
@@ -146,13 +173,24 @@ const ResetPasswordPage = () => {
     );
   }
 
+  const authFormLayout = (
+    <div>
+      <AuthLayoutTitle>Password reset</AuthLayoutTitle>
+      <span className="text-sm lp:text-lg text-brand-white leading-6">
+        Please enter the email associated with your account and we'll send an
+        email with instructions to reset your password.
+      </span>
+    </div>
+  );
+
   return (
-    <AuthLayout title="Reset Password">
-      <div className="mb-1 grid gap-4">
-        <span className="text-sm text-brand-white leading-6">
+    <AuthLayout title="Reset Password" authFormChildren={authFormLayout}>
+      <div className="mb-1 grid gap-4 lp:gap-0">
+        <span className="block text-sm text-brand-white leading-6 lp:hidden">
           Please enter the email associated with your account and we'll send an
           email with instructions to reset your password.
         </span>
+        <InputTitleComponent>Email</InputTitleComponent>
         <InputComponent
           placeholder="Enter email"
           value={resetPasswordUser.email}
@@ -160,7 +198,7 @@ const ResetPasswordPage = () => {
           validator={validateEmail}
           type="email"
         />
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 lp:mt-12 lp:flex lp:flex-col">
           <ButtonComponent
             variant={EButtonComponentVariant.Filled}
             label="Get code"

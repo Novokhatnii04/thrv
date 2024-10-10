@@ -60,3 +60,16 @@ body .react-datepicker__year-dropdown {
   font-size: 0.875rem /* 14px */;
   line-height: 1.25rem /* 20px */;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #6eead2;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}

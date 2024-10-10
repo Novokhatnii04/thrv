@@ -20,6 +20,7 @@ type ButtonComponentProps = {
   variant?: EButtonComponentVariant;
   label: string;
   onClick?: () => void;
+  cStyles?: string;
 };
 
 export const ButtonComponent: React.FC<ButtonComponentProps> = ({
@@ -27,6 +28,7 @@ export const ButtonComponent: React.FC<ButtonComponentProps> = ({
   variant = EButtonComponentVariant.Filled,
   label,
   onClick,
+  cStyles = '',
 }) => {
   let buttonStyles = ``;
   let textStyles = ``;
@@ -113,7 +115,7 @@ export const ButtonComponent: React.FC<ButtonComponentProps> = ({
     <button
       onClick={onClick}
       disabled={state === EButtonComponentState.Disabled}
-      className={`w-full flex-shrink rounded-2xl items-center justify-center py-4 px-5 ${buttonStyles}`}>
+      className={`w-full flex-shrink rounded-2xl items-center justify-center py-4 px-5 ${buttonStyles} ${cStyles}`}>
       {state === EButtonComponentState.Loading ? (
         <div>Loading</div>
       ) : (

@@ -1,8 +1,19 @@
 import React from 'react';
 
-export const AuthIllustration: React.FC = () => {
+type TAuthIllustration = {
+  cStyles?: string;
+};
+
+export const AuthIllustration: React.FC<TAuthIllustration> = ({
+  cStyles = '',
+}) => {
   return (
-    <svg width="100%" height="40%" viewBox="0 0 390 199" fill="none">
+    <svg
+      width="100%"
+      height="40%"
+      viewBox="0 0 390 199"
+      fill="none"
+      className={`${cStyles}`}>
       <path
         d="M0 112.955C0 112.955 62.842 146.255 106.844 144.905C171.324 142.928 205.748 75.1216 269.73 83.0015C325.729 89.8983 397 148.4 397 148.4"
         stroke="white"

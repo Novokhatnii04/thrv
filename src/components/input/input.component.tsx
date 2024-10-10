@@ -24,6 +24,21 @@ interface InputComponentProps {
   type?: HTMLInputTypeAttribute;
 }
 
+export const InputTitleComponent = ({
+  children,
+  cStyles = '',
+}: {
+  children: React.ReactNode;
+  cStyles?: string;
+}) => {
+  return (
+    <span
+      className={`hidden lp:block mb-4 text-base text-white leading-5 ${cStyles}`}>
+      {children}
+    </span>
+  );
+};
+
 export const InputComponent: React.FC<InputComponentProps> = ({
   value,
   setValue,
