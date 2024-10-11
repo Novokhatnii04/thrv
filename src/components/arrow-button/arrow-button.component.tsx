@@ -2,10 +2,9 @@ import React from 'react';
 
 interface IArrowButton {
   cStyles?: string;
-  onClick?: () => void;
 }
 
-const ArrowButton: React.FC<IArrowButton> = ({ onClick, cStyles = '' }) => {
+const ArrowButton: React.FC<IArrowButton> = ({ cStyles = '' }) => {
   return (
     <button
       className={`rounded-full w-[46px] h-[46px] flex items-center justify-center ${cStyles}`}>

@@ -35,12 +35,12 @@ const VaultPage = () => {
   return (
     <AppLayout>
       <div className="px-6">
-        <h3 className="font-bold text-xl mb-2.5">Vault</h3>
+        <h3 className="font-bold text-xl mb-2.5 lp:text-2xl">Vault</h3>
         {vaultCollection.length ? (
           <div className="grid gap-2.5 mt-4">
             {vaultCollection.map(item => (
               <div key={item.title} className="grid gap-2.5">
-                <div className="text-sm">{item.title}</div>
+                <div className="text-sm lp:text-lg">{item.title}</div>
                 <div className="grid gap-2.5 sm:grid sm:grid-cols-2 sm:justify-between">
                   {item?.data?.map(data => (
                     <SmallCard
