@@ -1,10 +1,6 @@
 'use client';
 import { AppLayout } from '@/layout/app/app.layout';
 import {
-  EInputComponentVariant,
-  InputComponent,
-} from '@/components/input/input.component';
-import {
   ButtonComponent,
   EButtonComponentState,
   EButtonComponentVariant,
@@ -30,6 +26,7 @@ import { CheckmarkSmallIcon } from '@/assets/icons/checkmark-small.icon';
 import { ErrorIcon } from '@/assets/icons/error.icon';
 import { DeleteAccountModal } from '@/components/modal/delete-account.component';
 import { toggleCookieInfoSidebar } from '@/utils/toggleCookieInfoSidebar';
+import ProfileInputs from './profile.inputs';
 
 export type IMyProfileType = {
   email: string;
@@ -239,44 +236,24 @@ const ProfilePage = () => {
   return (
     <AppLayout>
       <div className="px-6">
-        <h3 className="font-bold capitalize text-xl mb-2.5">My Profile</h3>
+        <h3 className="font-bold capitalize text-xl mb-2.5 lp:hidden">
+          My Profile
+        </h3>
         <div className="flex flex-col items-center sm:mt-10">
-          <div className="grid gap-4 mb-2.5 w-full sm:max-w-96">
-            <InputComponent
-              value={myProfileUser.email}
-              setValue={setEmail}
-              placeholder={user?.email}
-              validator={validateEmail}
-              type="email"
-              variant={EInputComponentVariant.LightTheme}
-            />
-            <InputComponent
-              value={myProfileUser.password}
-              setValue={setPassword}
-              type="password"
-              placeholder="*********"
-              validator={validatePassword}
-              variant={EInputComponentVariant.LightTheme}
-            />
-            <InputComponent
-              value={myProfileUser.firstName}
-              setValue={setFirstName}
-              placeholder={user?.first_name}
-              variant={EInputComponentVariant.LightTheme}
-            />
-            <InputComponent
-              value={myProfileUser.secondName}
-              setValue={setSecondName}
-              placeholder={user?.second_name}
-              variant={EInputComponentVariant.LightTheme}
+          <div className="w-full sm:max-w-96 lp:grid-cols-2 lp:max-w-[1073px] dp:max-w-[1450px] mr-auto">
+            <ProfileInputs
+              myProfileUser={myProfileUser}
+              setEmail={setEmail}
+              setPassword={setPassword}
+              setFirstName={setFirstName}
+              setSecondName={setSecondName}
+              setDateOfBirth={setDateOfBirth}
+              formatDate={formatDate}
+              validateEmail={validateEmail}
+              validatePassword={validatePassword}
+              user={user}
             />
 
-            {myProfileUser.dob && (
-              <div
-                className={`font-avenir border-brand-black-light text-brand-black opacity-80 h-[54px] border bg-transparent w-full rounded-2xl py-4 px-6 text-base`}>
-                {formatDate(myProfileUser.dob)}
-              </div>
-            )}
             {user?.status === EUserStatus.New && (
               <div
                 className="w-full py-4 px-6 border-warning-yellow border rounded-lg bg-warning-yellow bg-opacity-10 flex flex-row items-center"
@@ -335,15 +312,12 @@ const ProfilePage = () => {
                 </p>
               </div>
             )}
+          </div>
+          <div className="w-full grid lp:grid-cols-3 gap-4 lp:max-w-[900px] mr-auto">
             <ButtonComponent
               label="Save changes"
               state={saveChangesButtonVariant}
               onClick={handleSaveChanges}
-            />
-            <ButtonComponent
-              variant={EButtonComponentVariant.CategoryWhiteOutline}
-              onClick={toggleCookieInfoSidebar}
-              label="Show cookie settings"
             />
             <ButtonComponent
               variant={EButtonComponentVariant.CategoryWhiteOutline}
@@ -355,11 +329,16 @@ const ProfilePage = () => {
               onClick={() => setLogoutModalOpen(true)}
               label="Log out"
             />
+            <ButtonComponent
+              variant={EButtonComponentVariant.CategoryWhiteOutline}
+              onClick={toggleCookieInfoSidebar}
+              label="Show cookie settings"
+            />
           </div>
-          <span className="text-center text-xs">
+          <span className="text-center mt-4 text-xs lp:mr-auto">
             <span
               onClick={deleteButtonHandler}
-              className="text-[#96E9D4] cursor-pointer">
+              className="text-brand-red cursor-pointer">
               Delete
             </span>{' '}
             the account

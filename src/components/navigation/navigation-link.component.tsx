@@ -63,7 +63,7 @@ const NavigationLink: FC<NavigationLinkProps> = ({
     return (
       <Link href={href} aria-disabled={!isAuthenticated} onClick={handleClick}>
         <div
-          className={`flex gap-[15px] justify-start items-center bg-transparent`}>
+          className={`flex gap-[15px] justify-start items-center ${isActive ? 'bg-brand-green100' : 'bg-transparent'} px-4 py-2 rounded-2xl`}>
           <Icon fill="#000000" />
           <h1 className={textStyles}>{title}</h1>
         </div>
@@ -76,7 +76,7 @@ const NavigationLink: FC<NavigationLinkProps> = ({
       <Link href={href} aria-disabled={!isAuthenticated} onClick={handleClick}>
         <div
           className={`flex w-[230px] pl-[27px] gap-[15px] h-[59px] justify-start items-center dp:w-[301px] 
-          ${isActive ? 'bg-[#6EEAD21A]' : 'bg-white'} rounded-xl`}>
+          ${isActive ? 'bg-brand-green100' : 'bg-white'} rounded-xl`}>
           <Icon fill={isActive ? 'black' : '#A4A4A5'} />
           <h1
             className={`${isActive ? 'text-black font-bold' : 'text-[#A4A4A5] font-normal'} text-xl`}>

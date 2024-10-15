@@ -5,7 +5,7 @@ import { ClipboardModal } from '@/components/modal/clipboard-modal.component';
 import { BrandLogo } from '@/components/brand/brand-logo';
 import { copyToClipboard } from '@/utils/copyToClipboard';
 import { useRouter } from 'next/navigation';
-import ArrowButton from '../arrow-button/arrow-button.component';
+import ArrowButton from '@/components/arrow-button/arrow-button.component';
 
 type SmallCardComponentProps = {
   id: number;

@@ -14,6 +14,8 @@ const config: Config = {
       brand: {
         white: '#ffffff',
         placeholder: '#A4A4A5',
+        red: '#FF4545',
+        green100: '#6EEAD21A',
         dark: '#1B1B1D',
         gray600: '#4A556833',
         black: {
