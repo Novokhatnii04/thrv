@@ -63,7 +63,7 @@ const NavigationLink: FC<NavigationLinkProps> = ({
     return (
       <Link href={href} aria-disabled={!isAuthenticated} onClick={handleClick}>
         <div
-          className={`flex gap-[15px] justify-start items-center ${isActive ? 'bg-brand-green100' : 'bg-transparent'} px-4 py-2 rounded-2xl`}>
+          className={`flex gap-[10px] justify-start items-center ${isActive ? 'bg-brand-green100' : 'bg-transparent'} px-2 py-2 rounded-2xl`}>
           <Icon fill="#000000" />
           <h1 className={textStyles}>{title}</h1>
         </div>

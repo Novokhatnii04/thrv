@@ -89,26 +89,28 @@ const WalletPage = () => {
 
   return (
     <AppLayout>
-      <div className="px-6">
+      <div className="px-7">
         {wallet?.response.wallet && (
           <div>
             <div
               className="flex items-center mb-4 cursor-pointer"
               onClick={handleBackHomeClick}>
               <CircleArrowButtonComponent />
-              <h4 className="ml-1.5 font-normal text-[0.75rem] leading-none sm:text-base">
+              <h4 className="ml-1.5 font-normal text-[0.75rem] leading-none sm:text-base lp:text-lg">
                 Back to Home
               </h4>
             </div>
             <div className="mt-2.5 mb-2">
-              <p className="text-sm">
+              <p className="text-sm lp:text-lg lp:mt-3">
                 Earn £5 for each friend you refer by sharing the referral code
                 from your profile.
               </p>
             </div>
-            <div className="flex justify-between items-end mb-6">
-              <span className="font-bold text-[1.25rem]">My bonus balance</span>
-              <span className="font-bold text-3xl/10">
+            <div className="flex justify-between items-end mb-5 lp:border-b-2 lp:border-brand-gray600">
+              <span className="font-bold text-[1.25rem] lp:leading-[50px] lp:text-2xl">
+                My bonus balance
+              </span>
+              <span className="font-bold text-3xl/10 lp:leading-[50px] lp:text-2xl">
                 {moneyFormatter.format(wallet.response.wallet.amount)}
               </span>
             </div>
@@ -117,16 +119,16 @@ const WalletPage = () => {
         {walletTransactionsCollection.length ? (
           <div className="grid gap-2.5 mt-4 sm:grid-cols-2">
             {walletTransactionsCollection.map(item => (
-              <div key={item.title} className="grid gap-2.5">
-                <div className="text-sm">{item.title}</div>
+              <div key={item.title} className="grid gap-2.5 lp:gap-4 mb-4">
+                <div className="text-sm lp:text-base">{item.title}</div>
                 {item?.data?.map(data => (
                   <div
                     key={data.id}
-                    className="text-sm px-5 py-3 border border-brand-green rounded-2xl flex justify-between items-center">
-                    <span className="text-sm">
+                    className="text-sm px-5 py-3 border border-brand-green rounded-2xl flex justify-between items-center lp:py-[18px]">
+                    <span className="text-sm lp:text-base">
                       {data.amount > 0 ? 'Referral bonus' : 'Withdraw'}
                     </span>
-                    <span className="text-xl">
+                    <span className="text-xl lp:text-2xl lp:font-bold">
                       {moneyFormatter.format(data.amount)}
                     </span>
                   </div>
@@ -135,7 +137,7 @@ const WalletPage = () => {
             ))}
           </div>
         ) : (
-          <p className="text-sm">No transactions</p>
+          <p className="text-sm lp:text-base">No transactions</p>
         )}
         {(wallet?.response.wallet?.amount ?? 0) > 0 ? (
           <div className="flex flex-col mt-4 sm:max-w-96 sm:mx-auto sm:mt-10">
