@@ -15,7 +15,7 @@ import {
   EButtonComponentVariant,
 } from '@/components/button/button.component';
 import Logo2 from '@/assets/logo/logoIcon';
-import { LogoComponent } from '@/components/logo.component';
+import { LogoComponent } from '@/components/logo/logo.component';
 
 export enum EAuthLayoutType {
   SignIn,

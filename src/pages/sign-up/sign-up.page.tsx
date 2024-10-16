@@ -8,7 +8,7 @@ import { useAuth } from '@/hook/auth.hook';
 import { useState } from 'react';
 import SignUpFirstStep from './steps/sign-up-first-step';
 import SignUpSecondStep from './steps/sign-up-second-step';
-import { LogoComponent } from '@/components/logo.component';
+import { LogoComponent } from '@/components/logo/logo.component';
 import { useRouter } from 'next/navigation';
 
 const SignUpPage = () => {

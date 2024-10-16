@@ -1,4 +1,4 @@
-import { LogoComponent } from '@/components/logo.component';
+import { LogoComponent } from '@/components/logo/logo.component';
 import Image from 'next/image';
 import GooglePlay from '@/assets/img/google-play.png';
 import AppStore from '@/assets/img/app-store.png';

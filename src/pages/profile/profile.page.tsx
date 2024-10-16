@@ -19,14 +19,10 @@ import { useAuth } from '@/hook/auth.hook';
 import { useValidate } from '@/hook/validate.hook';
 import { ChangePasswordModal } from '@/components/modal/change-password.component';
 import { LogOutModal } from '@/components/modal/log-out.component';
-import { EUserStatus } from '@/api/register/register.type';
-import { WarningIcon } from '@/assets/icons/warning.icon';
-import { useRouter } from 'next/navigation';
-import { CheckmarkSmallIcon } from '@/assets/icons/checkmark-small.icon';
-import { ErrorIcon } from '@/assets/icons/error.icon';
 import { DeleteAccountModal } from '@/components/modal/delete-account.component';
 import { toggleCookieInfoSidebar } from '@/utils/toggleCookieInfoSidebar';
 import ProfileInputs from './profile.inputs';
+import StatusMessages from '@/components/status-message/status-message';
 
 export type IMyProfileType = {
   email: string;
@@ -47,8 +43,6 @@ const ProfilePage = () => {
   const { logout } = useAuth();
   const { user, refetch } = useUser();
   const { validateEmail, validatePassword } = useValidate();
-
-  const router = useRouter();
 
   const [isValid, setIsValid] = useState<boolean>(false);
   const [passwordModalOpen, setPasswordModalOpen] = useState<boolean>(false);
@@ -170,10 +164,6 @@ const ProfilePage = () => {
     });
   };
 
-  const setDateOfBirth = () => {
-    // Not possible
-  };
-
   const onSubmit = async () => {
     const {
       data: { status, response, error },
@@ -247,71 +237,13 @@ const ProfilePage = () => {
               setPassword={setPassword}
               setFirstName={setFirstName}
               setSecondName={setSecondName}
-              setDateOfBirth={setDateOfBirth}
               formatDate={formatDate}
               validateEmail={validateEmail}
               validatePassword={validatePassword}
               user={user}
             />
 
-            {user?.status === EUserStatus.New && (
-              <div
-                className="w-full py-4 px-6 border-warning-yellow border rounded-lg bg-warning-yellow bg-opacity-10 flex flex-row items-center"
-                onClick={() => router.push('/verify-identity')}>
-                <div className="min-w-10 w-10 h-10 mr-6">
-                  <WarningIcon />
-                </div>
-                <p className="text-sm flex-shrink">
-                  The app can be used by users up to 30 years old only. Click
-                  here to upload your ID.
-                </p>
-              </div>
-            )}
-            {user?.status === EUserStatus.Verified && (
-              <div className="w-full py-4 px-6 border-brand-green border rounded-lg bg-brand-green bg-opacity-10 flex flex-row items-center">
-                <div className="min-w-6 w-6 h-6 mr-2">
-                  <CheckmarkSmallIcon />
-                </div>
-                <p className="text-sm text-brand-green flex-shrink">
-                  Age of user is verified
-                </p>
-              </div>
-            )}
-            {user?.status === EUserStatus.Unverified && (
-              <div className="w-full py-4 px-6 border-warning-red border rounded-lg bg-warning-red bg-opacity-10 flex flex-row items-center flex-shrink">
-                <div className="min-w-10 w-10 h-10 mr-6">
-                  <ErrorIcon />
-                </div>
-                <p className="text-sm flex-shrink">
-                  Apologies, you did not pass verification. The app can be used
-                  by users up to 30 years old only.
-                </p>
-              </div>
-            )}
-            {user?.status === EUserStatus.NeedDocument && (
-              <div
-                className="w-full py-4 px-6 border-warning-red border rounded-lg bg-warning-red bg-opacity-10 flex flex-row items-center flex-shrink"
-                onClick={() => router.push('/verify-identity')}>
-                <div className="min-w-10 w-10 h-10 mr-6">
-                  <ErrorIcon />
-                </div>
-                <p className="text-sm flex-shrink">
-                  The verification period has expired. To continue using the
-                  app, click here to upload your ID
-                </p>
-              </div>
-            )}
-            {user?.status === EUserStatus.RejectedByAge && (
-              <div className="w-full py-4 px-6 border-warning-red border rounded-lg bg-warning-red bg-opacity-10 flex flex-row items-center flex-shrink">
-                <div className="min-w-10 w-10 h-10 mr-6">
-                  <ErrorIcon />
-                </div>
-                <p className="text-sm flex-shrink">
-                  Apologies, you did not pass verification. The app can be used
-                  by users up to 30 years old only.
-                </p>
-              </div>
-            )}
+            {user?.status && <StatusMessages status={user.status} />}
           </div>
           <div className="w-full grid lp:grid-cols-3 gap-4 lp:max-w-[900px] mr-auto">
             <ButtonComponent

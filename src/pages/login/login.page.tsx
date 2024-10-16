@@ -15,7 +15,7 @@ import {
 import { useAuth } from '@/hook/auth.hook';
 import { useValidate } from '@/hook/validate.hook';
 import Link from 'next/link';
-import { LogoComponent } from '@/components/logo.component';
+import { LogoComponent } from '@/components/logo/logo.component';
 
 export type ISignInUser = {
   email: string;

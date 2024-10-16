@@ -22,7 +22,7 @@ import {
 } from '@/hook/notification.hook';
 import Link from 'next/link';
 import { SearchIcon } from '@/assets/icons/search.icon';
-import { LogoComponent } from '@/components/logo.component';
+import { LogoComponent } from '@/components/logo/logo.component';
 import { SearchInput } from '../input/search-input';
 import { navigationLinks } from '@/entities/navigation-links';
 import NavigationLink, {

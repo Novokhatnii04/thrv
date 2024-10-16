@@ -130,17 +130,20 @@ const VerifyIdentity = () => {
       <div className="items-center px-6 h-full">
         {state !== EVerifyIdentityScreenState.Uploaded && (
           <>
-            <div className="flex justify-between items-center">
-              <CircleArrowButtonComponent
-                onClick={goBackPressHandler}
-                variant={ECircleArrowButtonComponentVariant.Left}
-              />
-              <h3 className="mt-3 text-brand-dark text-[20px] font-black">
+            <div className="flex justify-center items-center relative">
+              <div
+                className="flex items-center gap-2 absolute left-0"
+                onClick={goBackPressHandler}>
+                <CircleArrowButtonComponent
+                  variant={ECircleArrowButtonComponentVariant.Left}
+                />
+                <h3 className="font-normal text-brand-black text-base">Back</h3>
+              </div>
+              <h3 className="text-brand-dark text-[20px] lp:text-2xl font-black">
                 Upload your ID
               </h3>
-              <span className="w-4 mt-3" />
             </div>
-            <p className="mt-3.5 mb-6 text-xs w-full text-left text-brand-black">
+            <p className="mt-3.5 mb-6 text-xs w-full text-left lp:text-lg lp:text-center text-brand-black">
               Accepted forms of ID: Driving licence, National identity card,
               Passport, Residence permit.
               <br />
@@ -148,7 +151,7 @@ const VerifyIdentity = () => {
             </p>
             <div {...getRootProps({ className: 'dropzone' })}>
               <input {...getInputProps()} />
-              <div className="w-full opacity-100 hover:opacity-80 active:opacity-80 ease-linear transition-opacity flex cursor-pointer aspect-square border border-brand-green rounded-2xl items-center justify-center mb-2.5">
+              <div className="w-full opacity-100 hover:opacity-80 active:opacity-80 ease-linear transition-opacity flex cursor-pointer aspect-square border border-brand-green rounded-2xl items-center justify-center mb-2.5 lp:max-h-[560px]">
                 {state !== EVerifyIdentityScreenState.Empty && (
                   <div className="h-full w-full relative">
                     {image && (
@@ -164,32 +167,38 @@ const VerifyIdentity = () => {
                   </div>
                 )}
                 {state === EVerifyIdentityScreenState.Empty && (
-                  <div className="opacity-10 max-w-16">
+                  <div className="opacity-10 max-w-16 lp:max-w-48">
                     <PassportIcon />
                   </div>
                 )}
               </div>
             </div>
-            <ButtonComponent
-              state={buttonState}
-              label="Upload"
-              variant={EButtonComponentVariant.FilledWithDynamicLabelColor}
-              onClick={onUploadButtonClickHandler}
-            />
-            <p className="my-2.5 text-xs w-full text-brand-black opacity-60">
+            <div className="max-w-full lp:max-w-[342px] mx-auto">
+              <ButtonComponent
+                state={buttonState}
+                label="Upload"
+                variant={EButtonComponentVariant.FilledWithDynamicLabelColor}
+                onClick={onUploadButtonClickHandler}
+              />
+            </div>
+            <p className="my-2.5 text-xs w-full lp:text-sm lp:text-center text-brand-black opacity-60">
               The document will be deleted following its use for verification.
             </p>
           </>
         )}
         {state === EVerifyIdentityScreenState.Uploaded && (
-          <div className="flex flex-col items-center justify-center h-full mt-20">
-            <CheckmarkRoundedIcon />
+          <div className="flex flex-col items-center justify-center h-full mt-20 lp:mt-0 lp:border-2 rounded-3xl lp:max-h-[457px] lp:border-brand-gray600">
+            <CheckmarkRoundedIcon width={'144'} height={'144'} />
             <div className="w-2/3 items-center">
               <p className="text-brand-dark text-xl font-black mt-7 text-center">
                 Upload Successful
               </p>
             </div>
-            <div className="mt-8 w-full">
+            <h3 className="text-lg text-center leading-6 mt-4">
+              Verification takes 3-5 business days. We will inform you about the
+              result
+            </h3>
+            <div className="mt-8 w-full lp:w-[360px]">
               <ButtonComponent
                 label="Go to the home page"
                 onClick={goToTheHomePagePressHandler}

@@ -4,18 +4,17 @@ import {
   EInputComponentVariant,
   InputComponent,
 } from '@/components/input/input.component';
-
+import { IUserResponse } from '@/api/register/register.type';
 interface IProfileInputs {
   myProfileUser: IMyProfileType;
   setEmail: (email: string) => void;
   setPassword: (password: string) => void;
   setFirstName: (firstName: string) => void;
   setSecondName: (secondName: string) => void;
-  setDateOfBirth: (dob: Date | null) => void;
   formatDate: (date: Date) => string;
-  validateEmail: any;
-  validatePassword: any;
-  user: any;
+  validateEmail: (email: string) => boolean;
+  validatePassword: (password: string) => boolean;
+  user: IUserResponse | undefined;
 }
 
 const ProfileInputs: FC<IProfileInputs> = ({
@@ -24,7 +23,6 @@ const ProfileInputs: FC<IProfileInputs> = ({
   setPassword,
   setFirstName,
   setSecondName,
-  setDateOfBirth,
   formatDate,
   validateEmail,
   validatePassword,
