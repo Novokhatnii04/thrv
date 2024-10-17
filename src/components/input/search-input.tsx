@@ -7,7 +7,8 @@ export const SearchInput: React.FC<{
   onChange?: (value: string) => void;
   initial?: string;
   cStyles?: string;
-}> = ({ onChange, initial = '', cStyles = '' }) => {
+  onClickhandler?: () => void;
+}> = ({ onChange, initial = '', onClickhandler, cStyles = '' }) => {
   const [search, setSearch] = useState(initial);
 
   useEffect(() => {
@@ -31,15 +32,17 @@ export const SearchInput: React.FC<{
   };
 
   return (
-    <div className={`relative w-full max-w-sm ${cStyles}`}>
+    <div
+      className={`relative w-full max-w-sm ${cStyles}`}
+      onClick={onClickhandler}>
       <input
         type="text"
-        className="w-full p-2 pl-11 border border-1 border-[#BDBDBD] bg-white rounded-3xl outline-none shadow-[0_0_3px_rgba(74,85,104,0.2)] lp:p-[6px] lp:pl-[56px] dp:p-[10px] dp:pl-[60px] lp:ml-6"
+        className="w-full p-2 pl-11 border border-1 border-[#BDBDBD] bg-white rounded-3xl outline-none shadow-[0_0_3px_rgba(74,85,104,0.2)] lp:placeholder:text-base lp:p-3 lp:pl-[43px] dp:p-[10px] dp:pl-[45px]"
         placeholder="Search"
         value={search}
         onChange={handleChange}
       />
-      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 lp:left-10">
+      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 lp:left-3">
         <SearchIcon />
       </span>
       {search && (

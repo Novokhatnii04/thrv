@@ -4,10 +4,12 @@ interface IArrowButton {
   cStyles?: string;
 }
 
-const ArrowButton: React.FC<IArrowButton> = ({ cStyles = '' }) => {
+const ArrowButton: React.FC<IArrowButton> = ({
+  cStyles = 'bg-brand-green',
+}) => {
   return (
     <button
-      className={`rounded-full w-[46px] h-[46px] flex items-center justify-center ${cStyles}`}>
+      className={`rounded-full lp:w-[36px] lp:h-[36px] dp:w-[46px] dp:h-[46px] flex items-center justify-center ${cStyles}`}>
       <svg
         width="10"
         height="16"

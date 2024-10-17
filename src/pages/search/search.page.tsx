@@ -14,7 +14,10 @@ import { EResponseStatus } from '@/api/api.type';
 import { BrandLogo } from '@/components/brand/brand-logo';
 import Link from 'next/link';
 import { SearchIcon } from '@/assets/icons/search.icon';
-import { CouponComponent } from '@/components/coupon/coupon.component';
+import {
+  CouponComponent,
+  ECouponType,
+} from '@/components/coupon/coupon.component';
 
 const SearchPageComponent = () => {
   const [search, setSearch] = useState('');
@@ -76,26 +79,32 @@ const SearchPageComponent = () => {
   };
 
   return (
-    <AppLayout header={false}>
-      <div className="grid gap-4 p-6">
+    <AppLayout header={true}>
+      <div className="grid gap-4 p-6 pt-0">
         <SearchInput
           onChange={onSearchBarChange}
           initial={activeBrand?.name || search}
+          cStyles="mr-auto ml-0 lp:max-w-full lp:w-[699px] dp:w-[1090px]"
         />
         {activeBrand ? (
-          <div className="grid gap-5">
+          <div className="grid gap-5 lp:mt-4 dp:gap-8">
             {activeBrand.coupons?.length ? (
               <>
                 <div className="text-xl font-bold text-brand-dark">
-                  No offers found :&nbsp;
-                  <span className="font-normal">
+                  {activeBrand.coupons?.length > 0
+                    ? 'Offers found : '
+                    : 'No offers found'}
+                  <span className="font-bold">
                     {activeBrand.coupons?.length}
                   </span>
                 </div>
-                <ul className="grid gap-2.5">
+                <ul className="grid gap-2.5 lp:gap-x-0 lp:gap-y-14 lp:grid-cols-2 lp:max-w-[1050px] dp:max-w-[1330px]">
                   {activeBrand.coupons?.map(coupon => (
                     <li key={coupon.id}>
-                      <CouponComponent coupon={coupon} />
+                      <CouponComponent
+                        coupon={coupon}
+                        type={ECouponType.Secodary}
+                      />
                     </li>
                   ))}
                 </ul>
@@ -113,17 +122,17 @@ const SearchPageComponent = () => {
                 {brands.map(brand => (
                   <li
                     key={brand.id}
-                    className="flex pl-6 py-3 bg-white hover:bg-[#6EEAD221] transition-all duration-500 cursor-pointer border-b-[1px] border-[#BDBDBD2B]"
+                    className="flex pl-6 py-3 bg-white hover:bg-brand-green100 transition-all duration-500 cursor-pointer border-b-[1px] border-brand-gray100 lp:pl-3 lp:max-w-[699px] dp:max-w-[1090px]"
                     onClick={() => setActiveBrand(brand)}>
                     <SearchIcon color="#BDBDBD" />
-                    <span className="ml-3 text-lg text-brand-black">
+                    <span className="ml-3 text-lg text-brand-black lp:ml-2">
                       {highlightSearchTerm(brand.name)}
                     </span>
                   </li>
                 ))}
               </ul>
             ) : (
-              <div className="grid gap-5">
+              <div className="grid gap-5 lp:hidden">
                 <div className="capitalize text-xl font-bold text-brand-dark">
                   Popular brands
                 </div>

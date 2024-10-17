@@ -23,15 +23,18 @@ import {
 import Link from 'next/link';
 import { SearchIcon } from '@/assets/icons/search.icon';
 import { LogoComponent } from '@/components/logo/logo.component';
-import { SearchInput } from '../input/search-input';
+// import { SearchInput } from '../input/search-input';
 import { navigationLinks } from '@/entities/navigation-links';
 import NavigationLink, {
   ENavigationType,
   EResolutionType,
 } from '../navigation/navigation-link.component';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import SearchButton from '../search-button/search-button-component';
 
 export const Header = () => {
+  const router = useRouter();
   const pathName = usePathname();
   const { wallet } = useWallet();
   const [isAuthOpenModal, setIsAuthOpenModal] = useState(false);
@@ -185,10 +188,14 @@ export const Header = () => {
     <div className="mb-4 pt-4 px-6 w-full max-w-[1920px] lp:px-[30px] lp:pt-6 dp:m-auto dp:px-[35px] dp:mb-1">
       <AuthModal isOpen={isAuthOpenModal} setIsOpen={setIsAuthOpenModal} />
       <div className="flex flex-2 justify-between pb-1 bg-white flex-wrap items-center sticky top-0 w-full z-50">
-        <div className="lp:w-[290px] dp:w-[343px]">
+        <div className="lp:w-[313px] dp:w-[366px]">
           <LogoComponent main />
         </div>
-        <SearchInput cStyles="hidden lp:block mr-auto ml-0 lp:max-w-full lp:w-[699px] dp:w-[1090px]" />
+        <SearchButton
+          cStyles="hidden lp:flex mr-auto"
+          onClickHandler={() => router.push('/search')}
+        />
+        {/* <SearchInput onClickhandler={() => router.push('/search')} cStyles="hidden lp:block mr-auto ml-0 lp:max-w-full lp:w-[699px] dp:w-[1090px]" /> */}
         <div className="ml-1 flex items-center cursor-pointer">
           {iconsContent}
         </div>
