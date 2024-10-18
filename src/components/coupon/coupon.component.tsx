@@ -10,13 +10,15 @@ export enum ECouponType {
   Secodary,
 }
 
+interface ICouponComponent {
+  coupon: ICouponResponse;
+  type?: ECouponType;
+}
+
 export const CouponComponent = ({
   coupon,
   type = ECouponType.Primary,
-}: {
-  coupon: ICouponResponse;
-  type?: ECouponType;
-}) => {
+}: ICouponComponent) => {
   const router = useRouter();
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>): void => {
@@ -51,11 +53,11 @@ export const CouponComponent = ({
           src={DOMAIN + (coupon?.main_image ?? coupon?.brand.logo)}
           alt={coupon.title}
         />
-        {type === ECouponType.Secodary &&
+        {type === ECouponType.Secodary && (
           <div className="hidden lp:block absolute top-3 right-4">
             <ArrowButton />
           </div>
-        }
+        )}
       </div>
 
       <div

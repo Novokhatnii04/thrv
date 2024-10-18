@@ -115,7 +115,7 @@ export const ButtonComponent: React.FC<ButtonComponentProps> = ({
     <button
       onClick={onClick}
       disabled={state === EButtonComponentState.Disabled}
-      className={`w-full flex-shrink rounded-2xl items-center justify-center py-4 px-5 ${buttonStyles} ${cStyles}`}>
+      className={`w-full flex-shrink rounded-2xl items-center justify-center py-4 px-5 cursor-pointer ${buttonStyles} ${cStyles}`}>
       {state === EButtonComponentState.Loading ? (
         <div>Loading</div>
       ) : (

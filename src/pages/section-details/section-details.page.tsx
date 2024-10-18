@@ -19,6 +19,11 @@ import { Loading } from '@/components/loding/loading.component';
 import { CouponComponent } from '@/components/coupon/coupon.component';
 import { CategoryPicker } from '@/components/home/category-picker.component';
 import { BackButtonComponent } from '@/components/back-button/back-button.component';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/scrollbar';
+import { Scrollbar } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 const SectionDetailsPage = ({
   id,
@@ -137,11 +142,42 @@ const SectionDetailsPage = ({
     }
 
     return (
-      <div className="px-6 grid gap-4 sm:grid-cols-2">
-        {section.coupons.map(item => (
-          <CouponComponent key={item.id} coupon={item} />
-        ))}
-      </div>
+      <>
+        <div className="px-6 grid gap-4 sm:grid-cols-2 lp:hidden">
+          {section.coupons.map(item => (
+            <CouponComponent key={item.id} coupon={item} />
+          ))}
+        </div>
+
+        <div className="hidden lp:block">
+          <Swiper
+            modules={[Scrollbar]}
+            breakpoints={{
+              640: {
+                slidesPerView: 2.5,
+              },
+            }}
+            slidesPerView={1.25}
+            slidesOffsetAfter={24}
+            slidesOffsetBefore={24}
+            scrollbar={{ draggable: true }}
+            style={{
+              height: 'full',
+              paddingBottom: '20px',
+              marginRight: '1.5rem',
+            }}>
+            {section.coupons.map(item => {
+              return (
+                <SwiperSlide
+                  key={item.id}
+                  className="mr-3 lp:mr-0 lp:max-w-[266px] dp:max-w-[374px]">
+                  <CouponComponent key={item.id} coupon={item} />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </div>
+      </>
     );
   }, [section?.coupons, sectionResponseLoading]);
 

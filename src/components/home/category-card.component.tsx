@@ -1,6 +1,7 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
+import 'swiper/css/scrollbar';
+import { Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {
   CircleArrowButtonComponent,
@@ -25,6 +26,41 @@ export const CategoryCard = ({
   coupons: ICouponResponse[] | undefined;
   cStyles?: string;
 }) => {
+  const SliderCardComponent = ({
+    scroll,
+    styles,
+  }: {
+    scroll: { draggable: boolean } | boolean;
+    styles: any;
+  }) => {
+    return (
+      <div>
+        <Swiper
+          modules={[Scrollbar]}
+          breakpoints={{
+            640: {
+              slidesPerView: 2.5,
+            },
+          }}
+          slidesPerView={1.25}
+          slidesOffsetAfter={24}
+          slidesOffsetBefore={24}
+          scrollbar={scroll}
+          style={styles}>
+          {coupons?.map(coupon => {
+            return (
+              <SwiperSlide
+                key={coupon.id}
+                className="mr-3 lp:mr-0 lp:max-w-[266px] dp:max-w-[374px]">
+                <CouponComponent key={coupon.id} coupon={coupon} />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </div>
+    );
+  };
+
   return (
     <>
       <div className="rounded-lg">
@@ -40,28 +76,18 @@ export const CategoryCard = ({
             />
           </Link>
         </div>
-        <div>
-          <Swiper
-            modules={[Navigation]}
-            breakpoints={{
-              640: {
-                slidesPerView: 2.5,
-              },
+        <div className="hidden lp:block">
+          <SliderCardComponent
+            scroll={{ draggable: true }}
+            styles={{
+              height: 'full',
+              paddingBottom: '20px',
+              marginRight: '1.5rem',
             }}
-            slidesPerView={1.25}
-            slidesOffsetAfter={24}
-            slidesOffsetBefore={24}
-            style={{ height: 'full' }}>
-            {coupons?.map(coupon => {
-              return (
-                <SwiperSlide
-                  key={coupon.id}
-                  className="mr-3 lp:mr-0 lp:max-w-[266px] dp:max-w-[374px]">
-                  <CouponComponent key={coupon.id} coupon={coupon} />
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
+          />
+        </div>
+        <div className="lp:hidden">
+          <SliderCardComponent scroll={false} styles={{ height: 'full' }} />
         </div>
       </div>
     </>

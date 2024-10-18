@@ -122,7 +122,7 @@ const SearchPageComponent = () => {
                 {brands.map(brand => (
                   <li
                     key={brand.id}
-                    className="flex pl-6 py-3 bg-white hover:bg-brand-green100 transition-all duration-500 cursor-pointer border-b-[1px] border-brand-gray100 lp:pl-3 lp:max-w-[699px] dp:max-w-[1090px]"
+                    className="flex pl-6 py-3 bg-white hover:bg-brand-green100 transition-all duration-500 cursor-pointer border-b border-brand-gray100 lp:pl-3 lp:max-w-[699px] dp:max-w-[1090px]"
                     onClick={() => setActiveBrand(brand)}>
                     <SearchIcon color="#BDBDBD" />
                     <span className="ml-3 text-lg text-brand-black lp:ml-2">

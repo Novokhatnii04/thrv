@@ -29,7 +29,7 @@ const SearchButton: React.FC<ISearchButton> = ({
   return (
     <button
       onClick={onClickHandler}
-      className={`hover:bg-brand-green100 transition justify-center relative items-center w-[140px] h-[46px] rounded-xl ${cStyles} ${isDisabled ? 'pointer-events-none bg-brand-gray600' : 'bg-brand-green'}`}>
+      className={`hover:bg-brand-green100 transition justify-center relative items-center border w-cxl h-cs rounded-xl ${cStyles} ${isDisabled ? 'pointer-events-none bg-brand-gray600 border-brand-gray100' : 'bg-white  border-brand-green'}`}>
       <div className="absolute left-3">
         <SearchIcon />
       </div>

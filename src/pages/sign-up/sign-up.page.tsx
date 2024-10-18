@@ -10,6 +10,7 @@ import SignUpFirstStep from './steps/sign-up-first-step';
 import SignUpSecondStep from './steps/sign-up-second-step';
 import { LogoComponent } from '@/components/logo/logo.component';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const SignUpPage = () => {
   const { signUpUser, setSignUpUser, sighInUser, setSighInUser, register } =
@@ -31,8 +32,11 @@ const SignUpPage = () => {
       <AuthLayoutTitle cStyles="mt-6">Sign Up</AuthLayoutTitle>
       <span className="font-[16px] text-white mt-2 leading-6">
         By signing up you agree with our{' '}
-        <span className="text-brand-green">Term of Service</span> and{' '}
-        <span className="text-brand-green">Privacy Policy</span>
+        <Link
+          className="text-brand-green"
+          href="https://info.thrivecard.co.uk/index.php/content/privacy-policy/">
+          Privacy Policy
+        </Link>
       </span>
     </div>
   );

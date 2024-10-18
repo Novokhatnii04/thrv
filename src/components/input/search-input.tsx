@@ -1,14 +1,21 @@
-import { type ChangeEvent, useEffect, useState } from 'react';
+import { type ChangeEvent, FC, useEffect, useState } from 'react';
 import { SearchIcon } from '@/assets/icons/search.icon';
 import { SearchCloseIcon } from '@/assets/icons/search-close.icon';
 import debounce from '@mui/utils/debounce';
 
-export const SearchInput: React.FC<{
+interface ISearchInput {
   onChange?: (value: string) => void;
   initial?: string;
   cStyles?: string;
   onClickhandler?: () => void;
-}> = ({ onChange, initial = '', onClickhandler, cStyles = '' }) => {
+}
+
+export const SearchInput: FC<ISearchInput> = ({
+  onChange,
+  initial = '',
+  onClickhandler,
+  cStyles = '',
+}) => {
   const [search, setSearch] = useState(initial);
 
   useEffect(() => {

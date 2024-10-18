@@ -125,6 +125,53 @@ const VerifyIdentity = () => {
     return EButtonComponentState.Disabled;
   }, [image, state]);
 
+  const TitleComponent = ({ cStyles = '' }: { cStyles?: string }) => {
+    return (
+      <h3
+        className={`text-brand-dark text-[20px] lp:text-2xl font-black ${cStyles}`}>
+        Upload your ID
+      </h3>
+    );
+  };
+
+  const SubTitleComponent = ({ cStyles = '' }: { cStyles?: string }) => {
+    return (
+      <p
+        className={`mt-3.5 mb-6 lp:mb-0 text-xs w-full text-left lp:text-lg lp:text-center text-brand-black ${cStyles}`}>
+        Accepted forms of ID: Driving licence, National identity card, Passport,
+        Residence permit.
+        <br />
+        (1 file is the maximum number of files you can drop here)
+      </p>
+    );
+  };
+
+  const ButtonUploadComponent = ({ cStyles = '' }: { cStyles?: string }) => {
+    return (
+      <div className={`max-w-full mx-auto ${cStyles}`}>
+        <ButtonComponent
+          state={buttonState}
+          label="Upload"
+          variant={EButtonComponentVariant.FilledWithDynamicLabelColor}
+          onClick={onUploadButtonClickHandler}
+        />
+      </div>
+    );
+  };
+
+  const NotificationTextComponent = ({
+    cStyles = '',
+  }: {
+    cStyles?: string;
+  }) => {
+    return (
+      <p
+        className={`my-2.5 text-xs w-full lp:text-sm lp:text-center text-brand-black opacity-60 ${cStyles}`}>
+        The document will be deleted following its use for verification.
+      </p>
+    );
+  };
+
   return (
     <AppLayout>
       <div className="items-center px-6 h-full">
@@ -132,31 +179,29 @@ const VerifyIdentity = () => {
           <>
             <div className="flex justify-center items-center relative">
               <div
-                className="flex items-center gap-2 absolute left-0"
+                className="flex items-center gap-2 absolute cursor-pointer left-0 lp:relative lp:mr-auto"
                 onClick={goBackPressHandler}>
                 <CircleArrowButtonComponent
                   variant={ECircleArrowButtonComponentVariant.Left}
                 />
                 <h3 className="font-normal text-brand-black text-base">Back</h3>
               </div>
-              <h3 className="text-brand-dark text-[20px] lp:text-2xl font-black">
-                Upload your ID
-              </h3>
+              <TitleComponent cStyles="lp:hidden" />
             </div>
-            <p className="mt-3.5 mb-6 text-xs w-full text-left lp:text-lg lp:text-center text-brand-black">
-              Accepted forms of ID: Driving licence, National identity card,
-              Passport, Residence permit.
-              <br />
-              (1 file is the maximum number of files you can drop here)
-            </p>
-            <div {...getRootProps({ className: 'dropzone' })}>
-              <input {...getInputProps()} />
-              <div className="w-full opacity-100 hover:opacity-80 active:opacity-80 ease-linear transition-opacity flex cursor-pointer aspect-square border border-brand-green rounded-2xl items-center justify-center mb-2.5 lp:max-h-[560px]">
-                {state !== EVerifyIdentityScreenState.Empty && (
-                  <div className="h-full w-full relative">
+            <SubTitleComponent cStyles="lp:hidden" />
+            <input {...getInputProps()} />
+            <div>
+              <div className="w-full opacity-100 hover:opacity-80 active:opacity-80 ease-linear transition-opacity flex cursor-pointer aspect-square border border-brand-green rounded-2xl items-center justify-center mb-2.5 lp:mt-6 lp:max-h-cxxl">
+                <div
+                  className={`h-full w-full relative flex items-center lp:flex-col justify-center lp:justify-between lp:py-10`}>
+                  <div className="flex-col items-center hidden lp:flex">
+                    <TitleComponent />
+                    <SubTitleComponent />
+                  </div>
+                  <div {...getRootProps({ className: 'dropzone' })}>
                     {image && (
                       <img
-                        className="w-full h-full z-20 object-contain rounded-2xl"
+                        className="w-full h-full lp:w-96 lp:h-56 z-20 object-contain rounded-2xl"
                         onError={() => {
                           setState(EVerifyIdentityScreenState.Empty);
                         }}
@@ -164,26 +209,21 @@ const VerifyIdentity = () => {
                         alt="document"
                       />
                     )}
+                    {state === EVerifyIdentityScreenState.Empty && (
+                      <div className="opacity-10 w-[40vw] m-auto lp:max-w-48">
+                        <PassportIcon />
+                      </div>
+                    )}
                   </div>
-                )}
-                {state === EVerifyIdentityScreenState.Empty && (
-                  <div className="opacity-10 max-w-16 lp:max-w-48">
-                    <PassportIcon />
+                  <div className="hidden lp:flex flex-col w-96">
+                    <NotificationTextComponent />
+                    <ButtonUploadComponent cStyles="w-full" />
                   </div>
-                )}
+                </div>
               </div>
             </div>
-            <div className="max-w-full lp:max-w-[342px] mx-auto">
-              <ButtonComponent
-                state={buttonState}
-                label="Upload"
-                variant={EButtonComponentVariant.FilledWithDynamicLabelColor}
-                onClick={onUploadButtonClickHandler}
-              />
-            </div>
-            <p className="my-2.5 text-xs w-full lp:text-sm lp:text-center text-brand-black opacity-60">
-              The document will be deleted following its use for verification.
-            </p>
+            <ButtonUploadComponent cStyles="lp:hidden" />
+            <NotificationTextComponent cStyles="lp:hidden" />
           </>
         )}
         {state === EVerifyIdentityScreenState.Uploaded && (

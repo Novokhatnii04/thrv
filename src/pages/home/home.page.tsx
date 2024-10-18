@@ -71,7 +71,7 @@ const HomePage = () => {
             sectionId={section.id}
             title={section.title}
             coupons={section.coupons}
-            cStyles="px-6 pt-6 pb-2.5 lp:pr-[43px] dp:pb-6 dp:pl-6 dp:pr-[55px]"
+            cStyles="px-6 pt-6 pb-2.5 lp:pr-[25px] dp:pb-6 dp:pl-6 dp:pr-[40px]"
           />
         );
       })}

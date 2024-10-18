@@ -9,7 +9,7 @@ const ArrowButton: React.FC<IArrowButton> = ({
 }) => {
   return (
     <button
-      className={`rounded-full lp:w-[36px] lp:h-[36px] dp:w-[46px] dp:h-[46px] flex items-center justify-center ${cStyles}`}>
+      className={`rounded-full lp:w-9 lp:h-9 dp:w-cs dp:h-cs flex items-center justify-center ${cStyles}`}>
       <svg
         width="10"
         height="16"

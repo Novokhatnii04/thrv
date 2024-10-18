@@ -56,7 +56,7 @@ export const CategoryPicker = ({
   return (
     <div className="flex">
       <Swiper
-        className="dp:w-[100%] py-[1px] pr-[1px]"
+        className="dp:w-full py-[1px] pr-[1px]"
         modules={[Virtual]}
         breakpoints={{
           320: {
@@ -77,7 +77,7 @@ export const CategoryPicker = ({
             <BrickComponent
               text={category.name}
               active={category.name === activeCategory.name}
-              cStyles="lp:min-w-[140px]"
+              cStyles="lp:min-w-cxl cursor-pointer"
               onClick={() =>
                 setActiveCategory({ id: category.id, name: category.name })
               }

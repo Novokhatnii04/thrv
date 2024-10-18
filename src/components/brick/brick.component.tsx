@@ -15,7 +15,7 @@ export const BrickComponent: React.FC<BrickProps> = ({
 }) => {
   return (
     <div
-      className={`${active ? 'bg-brand-green' : 'bg-transparent'} ${cStyles} border border-1 border-brand-green flex justify-center rounded-xl px-5 py-2.5`}
+      className={`${active ? 'bg-brand-green' : 'bg-transparent'} ${cStyles} cursor-pointer border border-1 border-brand-green flex justify-center rounded-xl px-5 py-2.5`}
       onClick={() => onClick && onClick()}>
       {text}
     </div>

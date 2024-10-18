@@ -144,8 +144,10 @@ export const BrandLayout: React.FC<BrandLayoutProps> = ({ id }) => {
           {brand?.image ? (
             <>
               <div className="absolute top-2 left-1">
-                <div className="flex items-center sm:hidden">
-                  <div className="w-8 h-8" onClick={handleBack}>
+                <div
+                  className="flex items-center sm:hidden cursor-pointer"
+                  onClick={handleBack}>
+                  <div className="w-8 h-8">
                     <ArrowIcon variant={EArrowFilledIconVariant.Left} />
                   </div>
                   <span className="ml-1 text-brand-white text-xl">Back</span>

@@ -27,7 +27,7 @@ export const BackButtonComponent: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center" onClick={handleBack}>
+    <div className="flex items-center cursor-pointer" onClick={handleBack}>
       <CircleArrowButtonComponent
         variant={ECircleArrowButtonComponentVariant.Left}
       />

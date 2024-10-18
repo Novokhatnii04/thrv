@@ -28,10 +28,10 @@ import { navigationLinks } from '@/entities/navigation-links';
 import NavigationLink, {
   ENavigationType,
   EResolutionType,
-} from '../navigation/navigation-link.component';
+} from '@/components/navigation/navigation-link.component';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-import SearchButton from '../search-button/search-button-component';
+import SearchButton from '@/components/search-button/search-button-component';
 
 export const Header = () => {
   const router = useRouter();

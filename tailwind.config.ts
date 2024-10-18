@@ -44,6 +44,19 @@ const config: Config = {
       dp: { min: '1920px' },
     },
     extend: {
+      width: {
+        cxl: '140px',
+        cs: '46px',
+      },
+      height: {
+        cs: '46px',
+      },
+      maxHeight: {
+        cxxl: '622px',
+      },
+      minWidth: {
+        cxl: '140px',
+      },
       fontFamily: {
         avenir: 'Avenir',
       },
